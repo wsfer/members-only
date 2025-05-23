@@ -1,0 +1,11 @@
+// Check if user is logged in
+// if not, redirect to login page
+function isLoggedIn(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect('/user/login');
+  }
+}
+
+module.exports = isLoggedIn;
