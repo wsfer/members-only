@@ -1,11 +1,29 @@
 const asyncHandler = require('express-async-handler');
 
-const getPosts = asyncHandler(async (req, res) => {
+const getIndexPage = asyncHandler(async (req, res) => {
   res.render('index');
+});
+
+const getPostForm = asyncHandler(async (req, res) => {
+  res.render('post-form');
+});
+
+const getPosts = asyncHandler(async (req, res) => {
+  res.render('posts');
 });
 
 const createPost = asyncHandler(async (req, res) => {
   res.redirect('/');
 });
 
-module.exports = { getPosts, createPost };
+const deletePost = asyncHandler(async (req, res) => {
+  res.redirect('/');
+});
+
+module.exports = {
+  getIndexPage,
+  getPostForm,
+  getPosts,
+  createPost,
+  deletePost,
+};
