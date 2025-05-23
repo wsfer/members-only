@@ -10,12 +10,13 @@ const getPostForm = asyncHandler(async (req, res) => {
 });
 
 const getPosts = asyncHandler(async (req, res) => {
-  res.render('posts');
+  const posts = await postQueries.getPosts();
+  res.render('posts', { posts });
 });
 
 const createPost = asyncHandler(async (req, res) => {
   await postQueries.createPost({ ...req.body, userId: req.user.id });
-  res.redirect('/');
+  res.redirect('/posts');
 });
 
 const deletePost = asyncHandler(async (req, res) => {

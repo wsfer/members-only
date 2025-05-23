@@ -6,6 +6,12 @@
   <title>Only Members | Posts</title>
 </head>
 <body>
-  <p>Posts</p>
+  <% posts.forEach((post) => { %>
+    <article>
+      <h2><%= post.title %></h2>
+      <p><%= post.message %></p>
+      <p>Creator: <%= post.created_by %></p>
+    </article>
+  <% }) %>
 </body>
 </html>
