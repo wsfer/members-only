@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const postQueries = require('../database/post.queries');
 
 const getIndexPage = asyncHandler(async (req, res) => {
   res.render('index');
@@ -13,6 +14,7 @@ const getPosts = asyncHandler(async (req, res) => {
 });
 
 const createPost = asyncHandler(async (req, res) => {
+  await postQueries.createPost({ ...req.body, userId: req.user.id });
   res.redirect('/');
 });
 
