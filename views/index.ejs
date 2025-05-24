@@ -7,8 +7,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header><%= locals.user ? user.username : 'no user' %></header>
-    <p>member: <%= locals.user.is_member %></p>
+    <header><%= locals.user?.username || 'no user' %></header>
+    <p>member: <%= locals.user?.is_member ?? 'no user' %></p>
+    <p>admin: <%= locals.user?.is_admin ?? 'no user' %></p>
     <p><%= 'Hello' + ' ' + 'World' %></p>
   </body>
 </html>
