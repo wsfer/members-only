@@ -27,4 +27,26 @@ const createUser = [
   }),
 ];
 
-module.exports = { getLoginForm, getRegisterForm, createUser };
+const getMembershipForm = asyncHandler(async (req, res) => {
+  res.render('activate-membership');
+});
+
+const activateMembership = asyncHandler(async (req, res) => {
+  const HARDCODED_SECRET_TO_CHANGE_LATER = 'abc123';
+  const sentCode = req.body.code;
+
+  if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
+    await userQueries.changeMembership(true, req.user.id);
+    return res.redirect('/');
+  }
+
+  res.status(400).render('activate-membership', { error: 'Wrong code' });
+});
+
+module.exports = {
+  getLoginForm,
+  getRegisterForm,
+  createUser,
+  getMembershipForm,
+  activateMembership,
+};

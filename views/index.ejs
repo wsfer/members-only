@@ -8,6 +8,7 @@
   </head>
   <body>
     <header><%= locals.user ? user.username : 'no user' %></header>
+    <p>member: <%= locals.user.is_member %></p>
     <p><%= 'Hello' + ' ' + 'World' %></p>
   </body>
 </html>

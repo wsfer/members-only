@@ -25,4 +25,11 @@ async function createUser({ username, email, password }) {
   );
 }
 
-module.exports = { getById, getByUsername, createUser };
+async function changeMembership(booleanValue, userId) {
+  await pool.query('UPDATE account SET is_member = $1 WHERE id = $2', [
+    booleanValue,
+    userId,
+  ]);
+}
+
+module.exports = { getById, getByUsername, createUser, changeMembership };

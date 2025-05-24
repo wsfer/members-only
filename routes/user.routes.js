@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const userController = require('../controllers/user.controller');
+const isLoggedIn = require('../middlewares/isLoggedIn.middleware');
 const passport = require('../config/passport');
 
 const userRouter = Router();
@@ -11,5 +12,7 @@ userRouter.post(
   passport.authenticate('local', { successRedirect: '/' })
 );
 userRouter.post('/register', userController.createUser);
+userRouter.get('/membership', userController.getMembershipForm);
+userRouter.post('/membership', isLoggedIn, userController.activateMembership);
 
 module.exports = userRouter;
