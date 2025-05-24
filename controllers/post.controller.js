@@ -1,5 +1,7 @@
+const { validationResult } = require('express-validator');
 const asyncHandler = require('express-async-handler');
 const postQueries = require('../database/post.queries');
+const validatePost = require('../middlewares/validatePost.middleware');
 
 const getIndexPage = asyncHandler(async (req, res) => {
   res.render('index');
@@ -14,10 +16,21 @@ const getPosts = asyncHandler(async (req, res) => {
   res.render('posts', { posts });
 });
 
-const createPost = asyncHandler(async (req, res) => {
-  await postQueries.createPost({ ...req.body, userId: req.user.id });
-  res.redirect('/posts');
-});
+const createPost = [
+  validatePost,
+  asyncHandler(async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      const formErrors = errors.array();
+      const formValues = req.body;
+      return res.status(400).render('post-form', { formErrors, formValues });
+    }
+
+    await postQueries.createPost({ ...req.body, userId: req.user.id });
+    res.redirect('/posts');
+  }),
+];
 
 const deletePost = asyncHandler(async (req, res) => {
   res.redirect('/');
