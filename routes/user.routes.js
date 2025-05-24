@@ -11,6 +11,14 @@ userRouter.post(
   '/login',
   passport.authenticate('local', { successRedirect: '/' })
 );
+userRouter.post('/logout', (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
+});
 userRouter.post('/register', userController.createUser);
 userRouter.get('/membership', userController.getMembershipForm);
 userRouter.post('/membership', isLoggedIn, userController.activateMembership);
