@@ -23,4 +23,10 @@ app.use((req, res, next) => {
 app.use('/user', userRouter);
 app.use('/', postRouter);
 
+/*eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }]*/
+app.use((err, req, res, _next) => {
+  console.error(err);
+  res.status(500).end();
+});
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
