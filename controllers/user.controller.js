@@ -43,10 +43,28 @@ const activateMembership = asyncHandler(async (req, res) => {
   res.status(400).render('activate-membership', { error: 'Wrong code' });
 });
 
+const getAdminForm = asyncHandler(async (req, res) => {
+  res.render('activate-admin');
+});
+
+const activateAdmin = asyncHandler(async (req, res) => {
+  const HARDCODED_SECRET_TO_CHANGE_LATER = 'abc123';
+  const sentCode = req.body.code;
+
+  if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
+    await userQueries.changeAdmin(true, req.user.id);
+    return res.redirect('/');
+  }
+
+  res.status(400).render('activate-admin', { error: 'Wrong code' });
+});
+
 module.exports = {
   getLoginForm,
   getRegisterForm,
   createUser,
   getMembershipForm,
   activateMembership,
+  getAdminForm,
+  activateAdmin,
 };

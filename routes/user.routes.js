@@ -22,5 +22,7 @@ userRouter.post('/logout', (req, res, next) => {
 userRouter.post('/register', userController.createUser);
 userRouter.get('/membership', userController.getMembershipForm);
 userRouter.post('/membership', isLoggedIn, userController.activateMembership);
+userRouter.get('/you-shall-not-pass', isLoggedIn, userController.getAdminForm);
+userRouter.post('/activate-admin', isLoggedIn, userController.activateAdmin);
 
 module.exports = userRouter;

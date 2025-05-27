@@ -32,4 +32,17 @@ async function changeMembership(booleanValue, userId) {
   ]);
 }
 
-module.exports = { getById, getByUsername, createUser, changeMembership };
+async function changeAdmin(booleanValue, userId) {
+  await pool.query('UPDATE account SET is_admin = $1 WHERE id = $2', [
+    booleanValue,
+    userId,
+  ]);
+}
+
+module.exports = {
+  getById,
+  getByUsername,
+  createUser,
+  changeMembership,
+  changeAdmin,
+};
