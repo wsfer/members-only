@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const { postMessage } = require('../middlewares/message.middleware');
 const asyncHandler = require('express-async-handler');
 const userQueries = require('../database/user.queries');
 const validateRegister = require('../middlewares/validateRegister.middleware');
@@ -23,6 +24,7 @@ const createUser = [
     }
 
     await userQueries.createUser(req.body);
+    await postMessage(req, 'User created with success');
     res.redirect('/');
   }),
 ];
@@ -37,6 +39,7 @@ const activateMembership = asyncHandler(async (req, res) => {
 
   if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
     await userQueries.changeMembership(true, req.user.id);
+    await postMessage(req, 'Congratulations, you are a member!');
     return res.redirect('/');
   }
 
@@ -53,6 +56,7 @@ const activateAdmin = asyncHandler(async (req, res) => {
 
   if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
     await userQueries.changeAdmin(true, req.user.id);
+    await postMessage(req, 'Congratulations, you are an admin!');
     return res.redirect('/');
   }
 

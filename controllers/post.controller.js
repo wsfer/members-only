@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const { postMessage } = require('../middlewares/message.middleware');
 const asyncHandler = require('express-async-handler');
 const postQueries = require('../database/post.queries');
 const validatePost = require('../middlewares/validatePost.middleware');
@@ -28,6 +29,7 @@ const createPost = [
     }
 
     await postQueries.createPost({ ...req.body, userId: req.user.id });
+    await postMessage(req, 'Post created with success');
     res.redirect('/posts');
   }),
 ];

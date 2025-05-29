@@ -1,3 +1,4 @@
+const { recoverMessage } = require('./middlewares/message.middleware');
 const express = require('express');
 const passport = require('./config/passport');
 const session = require('./middlewares/session.middleware');
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(session);
 app.use(passport.session());
-
+app.use(recoverMessage);
 app.use((req, res, next) => {
   res.locals.user = req.user;
   next();
