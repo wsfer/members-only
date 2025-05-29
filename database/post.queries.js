@@ -12,4 +12,8 @@ async function createPost({ title, message, userId }) {
   );
 }
 
-module.exports = { getPosts, createPost };
+async function deletePost(id) {
+  await pool.query('DELETE FROM post WHERE id = $1', [id]);
+}
+
+module.exports = { getPosts, createPost, deletePost };

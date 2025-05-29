@@ -35,7 +35,9 @@ const createPost = [
 ];
 
 const deletePost = asyncHandler(async (req, res) => {
-  res.redirect('/');
+  await postQueries.deletePost(req.params.id);
+  await postMessage(req, `Post #${req.params.id} deleted`);
+  res.redirect('/posts');
 });
 
 module.exports = {
