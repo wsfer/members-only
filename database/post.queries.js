@@ -10,7 +10,9 @@ async function getTrendyPosts() {
 }
 
 async function getPosts() {
-  const { rows } = await pool.query('SELECT * FROM post');
+  const { rows } = await pool.query(
+    'SELECT * FROM post ORDER BY created_at DESC'
+  );
   return rows;
 }
 
