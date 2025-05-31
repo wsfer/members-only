@@ -5,7 +5,8 @@ const postQueries = require('../database/post.queries');
 const validatePost = require('../middlewares/validatePost.middleware');
 
 const getIndexPage = asyncHandler(async (req, res) => {
-  res.render('index');
+  const trendyPosts = await postQueries.getTrendyPosts();
+  res.render('index', { posts: trendyPosts });
 });
 
 const getPostForm = asyncHandler(async (req, res) => {
