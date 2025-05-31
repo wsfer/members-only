@@ -14,7 +14,7 @@
       <p>id: <%= post.id %></p>
       <p><%= post.message %></p>
       <p><%= post.created_at %></p>
-      <p>Creator: <%= post.created_by %></p>
+      <p>Creator: <%= post.username %></p>
       <% if (locals.user?.is_admin) { %>
         <form action="/delete-post/<%= post.id%>" method="post">
           <button type="submit">Delete</button>

@@ -2,17 +2,27 @@ const pool = require('../config/pool');
 
 async function getTrendyPosts() {
   const { rows } = await pool.query(`
-    SELECT * FROM post
+    SELECT
+      post.id, post.title, post.message,
+      account.username, account.email, account.is_member, account.is_admin
+    FROM post JOIN account
+    ON post.created_by = account.id
     ORDER BY created_at DESC
     LIMIT 5;
   `);
   return rows;
 }
 
+// TODO: add pagination
 async function getPosts() {
-  const { rows } = await pool.query(
-    'SELECT * FROM post ORDER BY created_at DESC'
-  );
+  const { rows } = await pool.query(`
+    SELECT
+      post.id, post.title, post.message,
+      account.username, account.email, account.is_member, account.is_admin
+    FROM post JOIN account
+    ON post.created_by = account.id
+    ORDER BY created_at DESC
+  `);
   return rows;
 }
 
