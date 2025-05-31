@@ -3,7 +3,7 @@ const pool = require('../config/pool');
 async function getTrendyPosts() {
   const { rows } = await pool.query(`
     SELECT
-      post.id, post.title, post.message,
+      post.id, post.title, post.message, post.created_at,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
     ON post.created_by = account.id
@@ -17,7 +17,7 @@ async function getTrendyPosts() {
 async function getPosts() {
   const { rows } = await pool.query(`
     SELECT
-      post.id, post.title, post.message,
+      post.id, post.title, post.message, post.created_at,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
     ON post.created_by = account.id
