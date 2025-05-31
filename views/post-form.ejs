@@ -6,6 +6,7 @@
   <title>Only Members | New Post</title>
 </head>
 <body>
+  <%- include('partials/header') %>
   <form method="POST" action="/new-post">
     <% if (locals.formErrors) { %>
       <ul>
