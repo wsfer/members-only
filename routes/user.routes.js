@@ -5,6 +5,7 @@ const passport = require('../config/passport');
 
 const userRouter = Router();
 
+userRouter.get('/', auth.isLoggedIn, userController.getUser);
 userRouter.get('/login', userController.getLoginForm);
 userRouter.get('/register', userController.getRegisterForm);
 userRouter.post(

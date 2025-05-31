@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Only Members | Posts</title>
+</head>
+<body>
+  <%- include('partials/header') %>
+  <p>Welcome <%= locals.user.username %></p>
+  <p>Account status: 
+    <% if (locals.user.is_admin) { %>
+      <span>Admin</span>
+    <% } else if (locals.user.is_member) { %>
+      <span>Member</span>
+    <% } else { %>
+      <span>Not member</span>
+    <% } %>
+  </p>
+  <% if (!locals.user.is_member) { %>
+    <a href="/user/membership">Become a member</a>
+  <% } %>
+  <form action="/user/logout" method="post"><button type="submit">Logout</button></form>
+</body>
+</html>

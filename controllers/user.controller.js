@@ -4,6 +4,10 @@ const asyncHandler = require('express-async-handler');
 const userQueries = require('../database/user.queries');
 const validateRegister = require('../middlewares/validateRegister.middleware');
 
+const getUser = asyncHandler(async (req, res) => {
+  res.render('user');
+});
+
 const getLoginForm = asyncHandler(async (req, res) => {
   res.render('login');
 });
@@ -64,6 +68,7 @@ const activateAdmin = asyncHandler(async (req, res) => {
 });
 
 module.exports = {
+  getUser,
   getLoginForm,
   getRegisterForm,
   createUser,

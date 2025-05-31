@@ -17,6 +17,7 @@
       <ul>
         <li><a href="/posts">Posts</a></li>
         <li><a href="/new-post">Create post</a></li>
+        <li><a href="/user"><%= locals.user.username %></a></li>
         <li><form action="/user/logout" method="post"><button type="submit">Logout</button></form></li>
         <% if (!locals.user.is_member) { %>
           <li><a href="/user/membership">Become a Member</a></li>

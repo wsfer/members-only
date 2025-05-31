@@ -8,13 +8,11 @@
   </head>
   <body>
     <%- include('partials/header') %>
-    <header><%= locals.user?.username || 'no user' %></header>
-    <p>member: <%= locals.user?.is_member ?? 'no user' %></p>
-    <p>admin: <%= locals.user?.is_admin ?? 'no user' %></p>
-    <form method="POST" action="/user/logout">
-      <button type="submit">Logout</button>
-    </form>
     <p><%= locals.message %></p>
+    <% if (locals.user && !(locals.user.is_member || locals.user.is_admin)) { %>
+      <p><a href="/user/membership">Become a member</a> to see post creator name</p>
+    <% } %>
+    <p></p>
     <% posts.forEach((post) => { %>
       <article>
         <h2><%= post.title %></h2>
