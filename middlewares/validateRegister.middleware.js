@@ -1,4 +1,5 @@
 const { body } = require('express-validator');
+const userQueries = require('../database/user.queries');
 
 const validateRegister = [
   body('username')
@@ -7,7 +8,14 @@ const validateRegister = [
     .withMessage('Username is too short, should be between 8 and 20 characters')
     .isLength({ max: 20 })
     .withMessage('Username is too long, should be between 8 and 20 characters'),
-  body('email').trim().isEmail().withMessage('Email is invalid'),
+  body('email')
+    .trim()
+    .isEmail()
+    .withMessage('Email is invalid')
+    .custom(async (value) => {
+      const existingUser = await userQueries.getByEmail(value);
+      if (existingUser) throw new Error('E-mail already in use');
+    }),
   body('password')
     .isLength({ min: 8 })
     .withMessage('Password is too short, should be between 8 and 20 characters')

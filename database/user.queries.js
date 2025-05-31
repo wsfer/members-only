@@ -16,6 +16,13 @@ async function getByUsername(username) {
   return rows[0];
 }
 
+async function getByEmail(email) {
+  const { rows } = await pool.query('SELECT * FROM account WHERE email = $1', [
+    email,
+  ]);
+  return rows[0];
+}
+
 async function createUser({ username, email, password }) {
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -42,6 +49,7 @@ async function changeAdmin(booleanValue, userId) {
 module.exports = {
   getById,
   getByUsername,
+  getByEmail,
   createUser,
   changeMembership,
   changeAdmin,
