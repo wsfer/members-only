@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const userController = require('../controllers/user.controller');
-const isLoggedIn = require('../middlewares/isLoggedIn.middleware');
+const auth = require('../middlewares/auth.middleware');
 const passport = require('../config/passport');
 
 const userRouter = Router();
@@ -20,9 +20,25 @@ userRouter.post('/logout', (req, res, next) => {
   });
 });
 userRouter.post('/register', userController.createUser);
-userRouter.get('/membership', userController.getMembershipForm);
-userRouter.post('/membership', isLoggedIn, userController.activateMembership);
-userRouter.get('/you-shall-not-pass', isLoggedIn, userController.getAdminForm);
-userRouter.post('/activate-admin', isLoggedIn, userController.activateAdmin);
+userRouter.get(
+  '/membership',
+  auth.isLoggedIn,
+  userController.getMembershipForm
+);
+userRouter.post(
+  '/membership',
+  auth.isLoggedIn,
+  userController.activateMembership
+);
+userRouter.get(
+  '/you-shall-not-pass',
+  auth.isLoggedIn,
+  userController.getAdminForm
+);
+userRouter.post(
+  '/activate-admin',
+  auth.isLoggedIn,
+  userController.activateAdmin
+);
 
 module.exports = userRouter;
