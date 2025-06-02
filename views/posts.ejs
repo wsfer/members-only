@@ -8,9 +8,23 @@
 <body>
   <%- include('partials/header') %>
   <p><%= locals.message %></p>
+
+  <form action="/posts" method="get">
+    <label for="search">Search</label>
+    <input type="text" name="search" id="search">
+    <button type="submit">Search</button>
+  </form>
+
   <% posts.forEach((post) => { %>
     <%- include('partials/post', { post }) %>
   <% }) %>
+
+  <nav>
+    <h2>Pagination</h2>
+    <ul>
+    </ul>
+  </nav>
+
   <script src="/script.js"></script>
 </body>
 </html>

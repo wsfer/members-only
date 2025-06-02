@@ -1,5 +1,7 @@
 const pool = require('../config/pool');
 
+const LIMIT_PER_PAGE = 10;
+
 async function getTrendyPosts() {
   const { rows } = await pool.query(`
     SELECT
@@ -13,17 +15,35 @@ async function getTrendyPosts() {
   return rows;
 }
 
-// TODO: add pagination
-async function getPosts() {
-  const { rows } = await pool.query(`
+async function getPosts({ page, search }) {
+  const offset = (page - 1) * LIMIT_PER_PAGE;
+
+  const posts = await pool.query(
+    `
     SELECT
       post.id, post.title, post.message, post.created_at,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
     ON post.created_by = account.id
+    WHERE post.title LIKE $1
     ORDER BY created_at DESC
-  `);
-  return rows;
+    LIMIT ${LIMIT_PER_PAGE} OFFSET ${offset}
+  `,
+    [`%${search}%`]
+  );
+
+  const resultCount = await pool.query(
+    'SELECT COUNT(id) FROM post WHERE title LIKE $1',
+    [`%${search}%`]
+  );
+
+  return {
+    posts: posts.rows,
+    total: Number(resultCount.rows[0].count),
+    limit: LIMIT_PER_PAGE,
+    page: page,
+    pages: Math.ceil(Number(resultCount.rows[0].count) / LIMIT_PER_PAGE),
+  };
 }
 
 async function createPost({ title, message, userId }) {

@@ -14,8 +14,16 @@ const getPostForm = asyncHandler(async (req, res) => {
 });
 
 const getPosts = asyncHandler(async (req, res) => {
-  const posts = await postQueries.getPosts();
-  res.render('posts', { posts });
+  const page = Number(req.query.page || 1);
+  const search = req.query.search || '';
+
+  // Limit page number to be between 1 and 100
+  if (!Number.isInteger(page) || page < 1 || page > 100) {
+    return res.status(404).end(); // TODO: throw an error or render 404 page
+  }
+
+  const result = await postQueries.getPosts({ page, search });
+  res.render('posts', { ...result });
 });
 
 const createPost = [
