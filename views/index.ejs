@@ -14,18 +14,8 @@
     <% } %>
     <p></p>
     <% posts.forEach((post) => { %>
-      <article>
-        <h2><%= post.title %></h2>
-        <p>id: <%= post.id %></p>
-        <p><%= post.message %></p>
-        <p><%= post.created_at %></p>
-        <p>Creator: <%= post.username %></p>
-        <% if (locals.user?.is_admin) { %>
-          <form action="/delete-post/<%= post.id%>" method="post">
-            <button type="submit">Delete</button>
-          </form>
-        <% } %>
-      </article>
+      <%- include('partials/post', { post }) %>
     <% }) %>
+    <script src="/script.js"></script>
   </body>
 </html>
