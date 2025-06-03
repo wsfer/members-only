@@ -43,3 +43,44 @@
 body {
   margin: 0;
 }
+
+/* Utility */
+.visually-hidden {
+  position: absolute;
+  left: -9999px;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 1800px;
+  width: 80%;
+}
+
+/* Minor components */
+.link {
+}
+
+.button {
+}
+
+.title-one {
+}
+
+.title-two {
+}
+
+.paragraph {
+}
+
+.input {
+}
+
+/* Major components */
+.header {
+}
+
+.post {
+}
+
+.footer {
+}
