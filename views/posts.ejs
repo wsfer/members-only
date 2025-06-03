@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Only Members | Posts</title>
-</head>
+<%- include('partials/head', { title: 'Posts'}) %>
 <body>
   <%- include('partials/header') %>
   <p><%= locals.message %></p>
@@ -28,26 +24,23 @@
 
     <% if (result.search) { %>
       <ul>
-        <% for (let index = 1; index <= result.pages; index++) { %>
+        <li><a href="<%= `/posts?search=${result.search}` %>">1</a></li>
+        <% for (let index = 2; index <= result.pages; index++) { %>
           <li>
-            <a href="<%= index > 1 ? `/posts?page=${index}&search=${result.search}` : `/posts?search=${result.search}` %>">
-              <%= index %>
-            </a>
+            <a href="<%= `/posts?page=${index}&search=${result.search}` %>"><%= index %></a>
           </li>
         <% } %>
       </ul>
     <% } else { %>
       <ul>
-        <% for (let index = 1; index <= result.pages; index++) { %>
+        <li><a href="<%= `/posts` %>">1</a></li>
+        <% for (let index = 2; index <= result.pages; index++) { %>
           <li>
-            <a href="<%= index > 1 ? `/posts?page=${index}` : '/posts' %>">
-              <%= index %>
-            </a>
+            <a href="<%= `/posts?page=${index}` %>"><%= index %></a>
           </li>
         <% } %>
       </ul>
     <% } %>
-    
   </nav>
   <script src="/script.js"></script>
 </body>

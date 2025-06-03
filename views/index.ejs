@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>First page</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <p><%= locals.message %></p>
-    <% if (locals.user && !(locals.user.is_member || locals.user.is_admin)) { %>
-      <p><a href="/user/membership">Become a member</a> to see post creator name</p>
-    <% } %>
-    <p></p>
-    <% posts.forEach((post) => { %>
-      <%- include('partials/post', { post }) %>
-    <% }) %>
-    <script src="/script.js"></script>
-  </body>
+<%- include('partials/head', { title: 'Homepage'}) %>
+<body>
+  <%- include('partials/header') %>
+  <p><%= locals.message %></p>
+  <% if (locals.user && !(locals.user.is_member || locals.user.is_admin)) { %>
+    <p><a href="/user/membership">Become a member</a> to see post creator name</p>
+  <% } %>
+  <p></p>
+  <% posts.forEach((post) => { %>
+    <%- include('partials/post', { post }) %>
+  <% }) %>
+  <script src="/script.js"></script>
+</body>
 </html>
