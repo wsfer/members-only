@@ -1,28 +1,36 @@
-<header>
-  <a href="/">
-    MembersOnly
-  </a>
-  <% if (!locals.user) { %>
-    <%# Logged out user links %>
-    <nav>
-      <ul>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/user/login">Login</a></li>
-        <li><a href="/user/register">Register</a></li>
-      </ul>
-    </nav>
-  <% } else { %>
-    <%# Logged in user links %>
-    <nav>
-      <ul>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/new-post">Create post</a></li>
-        <li><a href="/user"><%= locals.user.username %></a></li>
-        <li><form action="/user/logout" method="post"><button type="submit">Logout</button></form></li>
-        <% if (!locals.user.is_member) { %>
-          <li><a href="/user/membership">Become a Member</a></li>
-        <% }  %>
-      </ul>
-    </nav>
-  <% } %>
+<header class="header">
+  <div class="wrapper">
+    <div class="header__content">
+      <a href="/" class="header__logo">
+        <span class="logo__members">Members</span><span class="logo__only">Only</span>
+      </a>
+      <% if (!locals.user) { %>
+        <%# Logged out user links %>
+        <nav class="header__nav">
+          <ul>
+            <li><a class="link--inline" href="/posts">Posts</a></li>
+            <li><a class="link--inline" href="/user/login">Login</a></li>
+            <li><a class="link--inline" href="/user/register">Register</a></li>
+          </ul>
+        </nav>
+      <% } else { %>
+        <%# Logged in user links %>
+        <nav class="header__nav">
+          <ul>
+            <li><a class="link--inline" href="/posts">Posts</a></li>
+            <li><a class="link--inline" href="/new-post">Create</a></li>
+            <li><a class="link--inline" href="/user">Account</a></li>
+            <li>
+              <form action="/user/logout" method="post">
+                <button class="link--inline" type="submit">Logout</button>
+              </form>
+            </li>
+            <% if (!locals.user.is_member) { %>
+              <li><a class="link--button" href="/user/membership">Membership</a></li>
+            <% }  %>
+          </ul>
+        </nav>
+      <% } %>
+    </div>
+  </div>
 </header>

@@ -41,6 +41,19 @@
 }
 
 body {
+  background-color: var(--neutral-900);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif;
   margin: 0;
 }
 
@@ -57,7 +70,44 @@ body {
 }
 
 /* Minor components */
-.link {
+.link--inline {
+  background-color: transparent;
+  border: none;
+  color: var(--yellow-100);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  padding: 0;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: var(--yellow-500);
+  }
+
+  &:active {
+    color: var(--neutral-100);
+    text-decoration: underline;
+  }
+}
+
+.link--button {
+  background-color: var(--yellow-200);
+  border: none;
+  border-radius: 0.25em;
+  color: var(--neutral-900);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  padding: 0.2em 0.5em;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    background-color: var(--yellow-500);
+  }
+
+  &:active {
+    background-color: var(--neutral-100);
+  }
 }
 
 .button {
@@ -77,6 +127,47 @@ body {
 
 /* Major components */
 .header {
+  background-color: var(--neutral-800);
+}
+
+.header__content {
+  align-items: center;
+  display: flex;
+}
+
+.header__logo {
+  --first-color: var(--neutral-100);
+  --second-color: var(--yellow-400);
+
+  font-size: var(--text-lg);
+  text-decoration: none;
+
+  .logo__members {
+    color: var(--first-color);
+    transition: color 0.7s ease-in-out;
+  }
+
+  .logo__only {
+    color: var(--second-color);
+    transition: color 0.7s ease-in-out;
+  }
+
+  &:hover,
+  &:focus {
+    --first-color: var(--yellow-400);
+    --second-color: var(--neutral-100);
+  }
+}
+
+.header__nav {
+  margin-left: auto;
+
+  ul {
+    display: flex;
+    gap: 0.75rem;
+    list-style: none;
+    padding: 0;
+  }
 }
 
 .post {
