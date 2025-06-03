@@ -23,7 +23,7 @@ const getPosts = asyncHandler(async (req, res) => {
   }
 
   const result = await postQueries.getPosts({ page, search });
-  res.render('posts', { ...result });
+  res.render('posts', { result });
 });
 
 const createPost = [

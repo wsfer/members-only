@@ -15,16 +15,40 @@
     <button type="submit">Search</button>
   </form>
 
-  <% posts.forEach((post) => { %>
+  <% if (result.search) { %>
+    <p>Displaying results for '<%= result.search %>'</p>
+  <% } %>
+
+  <% result.posts.forEach((post) => { %>
     <%- include('partials/post', { post }) %>
   <% }) %>
 
   <nav>
     <h2>Pagination</h2>
-    <ul>
-    </ul>
-  </nav>
 
+    <% if (result.search) { %>
+      <ul>
+        <% for (let index = 1; index <= result.pages; index++) { %>
+          <li>
+            <a href="<%= index > 1 ? `/posts?page=${index}&search=${result.search}` : `/posts?search=${result.search}` %>">
+              <%= index %>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    <% } else { %>
+      <ul>
+        <% for (let index = 1; index <= result.pages; index++) { %>
+          <li>
+            <a href="<%= index > 1 ? `/posts?page=${index}` : '/posts' %>">
+              <%= index %>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+    
+  </nav>
   <script src="/script.js"></script>
 </body>
 </html>
