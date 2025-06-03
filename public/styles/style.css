@@ -1,0 +1,45 @@
+:root {
+  --neutral-50: hsl(0, 0%, 99%);
+  --neutral-100: hsl(0, 0%, 90%);
+  --neutral-200: hsl(0, 0%, 81%);
+  --neutral-300: hsl(0, 0%, 72%);
+  --neutral-400: hsl(0, 0%, 63%);
+  --neutral-500: hsl(0, 0%, 54%);
+  --neutral-600: hsl(0, 0%, 45%);
+  --neutral-700: hsl(0, 0%, 36%);
+  --neutral-800: hsl(0, 0%, 27%);
+  --neutral-900: hsl(0, 0%, 18%);
+  --neutral-950: hsl(0, 0%, 9%);
+  --neutral-1000: hsl(0, 0%, 0%);
+  --yellow-50: hsl(60, 100%, 99%);
+  --yellow-100: hsl(60, 100%, 90%);
+  --yellow-200: hsl(60, 100%, 81%);
+  --yellow-300: hsl(60, 100%, 72%);
+  --yellow-400: hsl(60, 100%, 63%);
+  --yellow-500: hsl(60, 100%, 54%);
+  --yellow-600: hsl(60, 100%, 45%);
+  --yellow-700: hsl(60, 100%, 36%);
+  --yellow-800: hsl(60, 100%, 27%);
+  --yellow-900: hsl(60, 100%, 18%);
+  --yellow-950: hsl(60, 100%, 9%);
+  --yellow-1000: hsl(60, 100%, 0%);
+  --text-xs: clamp(0.75rem, 0.875vw, 1.5rem);
+  --text-sm: clamp(0.875rem, 1vw, 1.75rem);
+  --text-normal: clamp(1rem, 1.25vw, 2rem);
+  --text-lg: clamp(1.125rem, 1.75vw, 2.25rem);
+  --text-xl: clamp(1.25rem, 2vw, 2.5rem);
+  --text-2xl: clamp(1.5rem, 2.25vw, 3rem);
+  --text-3xl: clamp(1.875rem, 2.5vw, 3.5rem);
+  --text-4xl: clamp(2.25rem, 3vw, 4.5rem);
+  --text-5xl: clamp(3rem, 4vw, 6rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
