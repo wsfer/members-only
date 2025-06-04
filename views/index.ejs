@@ -3,14 +3,27 @@
 <%- include('partials/head', { title: 'Homepage'}) %>
 <body>
   <%- include('partials/header') %>
-  <p><%= locals.message %></p>
-  <% if (locals.user && !(locals.user.is_member || locals.user.is_admin)) { %>
-    <p><a href="/user/membership">Become a member</a> to see post creator name</p>
-  <% } %>
-  <p></p>
-  <% posts.forEach((post) => { %>
-    <%- include('partials/post', { post }) %>
-  <% }) %>
+  <main>
+    <div class="wrapper">
+      <% if (locals.message) { %>
+        <div class="message-box" role="status">
+          <p class="paragraph"><%= message %></p>
+        </div>
+      <% } %>
+      
+      <% if (locals.user && !(locals.user.is_member || locals.user.is_admin)) { %>
+        <div class="message-box" role="status">
+          <p class="paragraph">
+            <a class="link--inline" href="/user/membership">Become a member</a> to see post creator name
+          </p>
+        </div>
+      <% } %>
+
+      <% posts.forEach((post) => { %>
+        <%- include('partials/post', { post }) %>
+      <% }) %>
+    </div>
+  </main>
   <%- include('partials/footer') %>
   <script src="/script.js"></script>
 </body>
