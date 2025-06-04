@@ -147,7 +147,8 @@ body {
 
 .paragraph {
   color: var(--neutral-200);
-  font-size: var(--text-normal);
+  font-size: var(--text-sm);
+  margin: 0;
 }
 
 .input {
@@ -223,9 +224,4 @@ body {
     margin: 0;
     padding: 0;
   }
-}
-
-.footer__text {
-  font-size: var(--text-sm);
-  margin: 0;
 }
