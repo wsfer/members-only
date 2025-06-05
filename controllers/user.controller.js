@@ -38,7 +38,8 @@ const createUser = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      const formErrors = errors.array();
+      const formErrors = errors.mapped();
+      console.log(formErrors);
       const formValues = req.body;
       return res.status(400).render('register', { formErrors, formValues });
     }

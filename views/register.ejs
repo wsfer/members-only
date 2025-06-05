@@ -4,13 +4,7 @@
 <body>
   <%- include('partials/header') %>
   <form method="POST" action="/user/register">
-    <% if (locals.formErrors) { %>
-      <ul>
-        <% formErrors.forEach(error => { %>
-          <li><%= error.msg %></li>
-        <% }) %>
-      </ul>
-    <% } %>
+   
 
     <label for="username">Username</label>
     <input
@@ -21,6 +15,7 @@
       maxlength="20"
       value=<%= locals.formValues?.username || '' %>
     >
+    <p><%= locals.formErrors?.username?.msg %></p>
 
     <label for="email">Email</label>
     <input
@@ -29,6 +24,7 @@
       id="email"
       value=<%= locals.formValues?.email || '' %>
     >
+    <p><%= locals.formErrors?.email?.msg %></p>
 
     <label for="password">Password</label>
     <input
@@ -39,6 +35,7 @@
       maxlength="20"
       value=<%= locals.formValues?.password || '' %>
     >
+    <p><%= locals.formErrors?.password?.msg %></p>
 
     <label for="confirm-password">Confirm password</label>
     <input
@@ -49,6 +46,7 @@
       maxlength="20"
       value=<%= locals.formValues?.confirmPassword || '' %>
     >
+    <p><%= locals.formErrors?.confirmPassword?.msg %></p>
 
     <button type="submit">Register</button>
   </form>
