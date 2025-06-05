@@ -26,7 +26,7 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 
     req.login(user, async () => {
-      await postMessage(req, `Logged in as ${user.username}`);
+      await postMessage(req, `Logged in as ${user.username}`, 'success');
       res.redirect('/');
     });
   })(req, res);
@@ -44,7 +44,7 @@ const createUser = [
     }
 
     await userQueries.createUser(req.body);
-    await postMessage(req, 'User created with success');
+    await postMessage(req, 'User created with success', 'success');
     res.redirect('/');
   }),
 ];
@@ -59,7 +59,7 @@ const activateMembership = asyncHandler(async (req, res) => {
 
   if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
     await userQueries.changeMembership(true, req.user.id);
-    await postMessage(req, 'Congratulations, you are a member!');
+    await postMessage(req, 'Congratulations, you are a member!', 'success');
     return res.redirect('/');
   }
 
@@ -76,7 +76,7 @@ const activateAdmin = asyncHandler(async (req, res) => {
 
   if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
     await userQueries.changeAdmin(true, req.user.id);
-    await postMessage(req, 'Congratulations, you are an admin!');
+    await postMessage(req, 'Congratulations, you are an admin!', 'success');
     return res.redirect('/');
   }
 

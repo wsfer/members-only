@@ -38,7 +38,7 @@ const createPost = [
     }
 
     await postQueries.createPost({ ...req.body, userId: req.user.id });
-    await postMessage(req, 'Post created with success');
+    await postMessage(req, 'Post created with success', 'success');
     res.redirect('/posts');
   }),
 ];
