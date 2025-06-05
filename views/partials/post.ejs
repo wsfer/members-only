@@ -1,25 +1,36 @@
-<article>
-  <h2><%= post.title %></h2>
+<%# Dates are rendered visually on client side %>
+<article class="post">
+  <div class="post__header">
+    <%# Only display username and date if user is member/admin or creator of the post %>
+    <% if (locals.user && (user.is_admin || user.is_member || user.username === post.username)) { %>
+      <p class="paragraph">
+        <span class="visually-hidden">Posted by</span>
+        <span class="post__username"><%= post.username %></span>
+        <span aria-hidden="true">•</span>
+        <time
+          class="js-date post__date"
+          data-timestamp="<%= post.created_at %>"
+          datetime="<%= new Date(post.created_at).toISOString() %>"
+        ><span aria-label="Loading date">🕒</span></time>
+      </p>
+    <% } else { %>
+      <p class="paragraph blur">
+        <span class="visually-hidden">Posted by</span>
+        <span class="post__username">Annonymous</span>
+        <span aria-hidden="true">•</span>
+        <span class="post__date">hidden</span>
+      </p>
+    <% } %>
 
-  <%# Only display username and date if user is member/admin or creator of the post %>
-  <% if (locals.user && (user.is_admin || user.is_member || user.username === post.username)) { %>
-    <p><%= post.username %></p>
-    <%# Dates are rendered visually on client side %>
-    <time
-      class="js-date"
-      data-timestamp="<%= post.created_at %>"
-      datetime="<%= new Date(post.created_at).toISOString() %>"
-    >🕒</time>
-  <% } else { %>
-    <p>Annonymous</p>
-    <p>hidden</p>
-  <% } %>
+    <% if (locals.user?.is_admin) { %>
+      <form class="post__controller" action="/delete-post/<%= post.id%>" method="post">
+        <button class="link--button" type="submit">Delete</button>
+      </form>
+    <% } %>
+  </div>
 
-  <p><%= post.message %></p>
-  
-  <% if (locals.user?.is_admin) { %>
-    <form action="/delete-post/<%= post.id%>" method="post">
-      <button type="submit">Delete</button>
-    </form>
-  <% } %>
+  <div class="post__body">
+    <h2 class="post__title title-two"><%= post.title %></h2>
+    <p class="paragraph"><%= post.message %></p>
+  </div>
 </article>

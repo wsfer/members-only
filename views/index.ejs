@@ -19,9 +19,13 @@
         </div>
       <% } %>
 
-      <% posts.forEach((post) => { %>
-        <%- include('partials/post', { post }) %>
-      <% }) %>
+      <h1 class="title-one">Recent posts</h1>
+
+      <div class="posts">
+        <% posts.forEach((post) => { %>
+          <%- include('partials/post', { post }) %>
+        <% }) %>
+      </div>
     </div>
   </main>
   <%- include('partials/footer') %>
