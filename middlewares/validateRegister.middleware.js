@@ -7,7 +7,11 @@ const validateRegister = [
     .isLength({ min: 8 })
     .withMessage('Username is too short, should be between 8 and 20 characters')
     .isLength({ max: 20 })
-    .withMessage('Username is too long, should be between 8 and 20 characters'),
+    .withMessage('Username is too long, should be between 8 and 20 characters')
+    .custom(async (value) => {
+      const existingUser = await userQueries.getByUsername(value);
+      if (existingUser) throw new Error('Username is already in use');
+    }),
   body('email')
     .trim()
     .isEmail()
