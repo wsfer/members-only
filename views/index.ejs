@@ -6,13 +6,13 @@
   <main>
     <div class="wrapper">
       <% if (locals.message) { %>
-        <div class="message-box" role="status">
+        <div class="message-box <%= locals.messageType %>" role="status">
           <p class="paragraph"><%= message %></p>
         </div>
       <% } %>
       
       <% if (locals.user && !(locals.user.is_member || locals.user.is_admin)) { %>
-        <div class="message-box" role="status">
+        <div class="message-box alert" role="status">
           <p class="paragraph">
             <a class="link--inline" href="/user/membership">Become a member</a> to see post creator name
           </p>

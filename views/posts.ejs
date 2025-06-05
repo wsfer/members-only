@@ -4,6 +4,12 @@
 <body>
   <%- include('partials/header') %>
 
+  <% if (locals.message) { %>
+    <div class="message-box <%= locals.messageType %>" role="status">
+      <p class="paragraph"><%= message %></p>
+    </div>
+  <% } %>
+
   <form action="/posts" method="get">
     <label for="search">Search</label>
     <input type="text" name="search" id="search">

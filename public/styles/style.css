@@ -23,6 +23,10 @@
   --yellow-900: hsl(60, 100%, 18%);
   --yellow-950: hsl(60, 100%, 9%);
   --yellow-1000: hsl(60, 100%, 0%);
+  --success-light: hsl(100, 80%, 80%);
+  --success-dark: hsl(100, 90%, 15%);
+  --error-light: hsl(0, 60%, 80%);
+  --error-dark: hsl(0, 60%, 40%);
   --text-xs: clamp(0.75rem, 0.875vw, 1.5rem);
   --text-sm: clamp(0.875rem, 1vw, 1.75rem);
   --text-normal: clamp(1rem, 1.25vw, 2rem);
@@ -136,9 +140,6 @@ body {
   }
 }
 
-.button {
-}
-
 .title-one {
   color: var(--neutral-100);
   font-size: var(--text-3xl);
@@ -163,21 +164,24 @@ body {
   filter: blur(0.2em);
 }
 
-.input {
-}
-
 /* Major components */
 .message-box {
-  background-color: var(--yellow-900);
   margin: 1rem auto;
   min-width: 50%;
   padding: 0.5em 1em;
   text-align: center;
   width: fit-content;
 
-  &::before {
-    content: '⚠️';
-    float: inline-start;
+  &.success {
+    background-color: var(--success-dark);
+  }
+
+  &.alert {
+    background-color: var(--yellow-900);
+  }
+
+  &.failure {
+    background-color: var(--error-dark);
   }
 }
 
