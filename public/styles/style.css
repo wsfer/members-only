@@ -140,6 +140,25 @@ body {
   }
 }
 
+.button {
+  background-color: var(--yellow-200);
+  border: none;
+  border-radius: 0.25em;
+  color: var(--neutral-900);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  padding: 0.2em 0.5em;
+
+  &:hover,
+  &:focus {
+    background-color: var(--yellow-500);
+  }
+
+  &:active {
+    background-color: var(--neutral-100);
+  }
+}
+
 .title-one {
   color: var(--neutral-100);
   font-size: var(--text-3xl);
@@ -158,6 +177,10 @@ body {
   color: var(--neutral-200);
   font-size: var(--text-sm);
   margin: 0;
+}
+
+.accent {
+  color: var(--yellow-200);
 }
 
 .blur {
@@ -221,6 +244,28 @@ body {
 
 .post__title {
   margin-bottom: 0.5em;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-wrapper__label {
+  color: var(--neutral-100);
+  font-size: var(--text-sm);
+}
+
+.input-wrapper__input {
+  color: var(--neutral-200);
+  font-size: var(--text-sm);
+}
+
+.input-wrapper__error {
+  color: var(--error-light);
+  font-size: var(--text-sm);
+  margin: 0;
 }
 
 /* Header */
