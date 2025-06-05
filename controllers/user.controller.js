@@ -3,6 +3,7 @@ const { postMessage } = require('../middlewares/message.middleware');
 const asyncHandler = require('express-async-handler');
 const userQueries = require('../database/user.queries');
 const validateRegister = require('../middlewares/validateRegister.middleware');
+const passport = require('../config/passport');
 
 const getUser = asyncHandler(async (req, res) => {
   res.render('user');
@@ -14,6 +15,21 @@ const getLoginForm = asyncHandler(async (req, res) => {
 
 const getRegisterForm = asyncHandler(async (req, res) => {
   res.render('register');
+});
+
+const loginUser = asyncHandler(async (req, res) => {
+  passport.authenticate('local', (err, user) => {
+    if (err) throw err;
+
+    if (!user) {
+      return res.render('login', { error: "User or password doesn't exist" });
+    }
+
+    req.login(user, async () => {
+      await postMessage(req, `Logged in as ${user.username}`);
+      res.redirect('/');
+    });
+  })(req, res);
 });
 
 const createUser = [
@@ -71,6 +87,7 @@ module.exports = {
   getUser,
   getLoginForm,
   getRegisterForm,
+  loginUser,
   createUser,
   getMembershipForm,
   activateMembership,

@@ -3,12 +3,16 @@
 <%- include('partials/head', { title: 'Login'}) %>
 <body>
   <%- include('partials/header') %>
-  <form method="POST" action="/user/login">
+  <form action="/user/login" method="post">
     <label for="username">Username</label>
     <input type="text" name="username" id="username">  
     
     <label for="password">Password</label>
-    <input type="password" name="password" id="password">  
+    <input type="password" name="password" id="password">
+
+    <% if (locals.error) { %>
+      <p class="input-wrapper__error"><%= error %></p>
+    <% } %>
     
     <button type="submit">Login</button>
   </form>
