@@ -27,11 +27,7 @@ userRouter.post(
   auth.isLoggedIn,
   userController.activateMembership
 );
-userRouter.get(
-  '/you-shall-not-pass',
-  auth.isLoggedIn,
-  userController.getAdminForm
-);
+userRouter.get('/activate-admin', auth.isLoggedIn, userController.getAdminForm);
 userRouter.post(
   '/activate-admin',
   auth.isLoggedIn,

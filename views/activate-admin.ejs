@@ -3,12 +3,29 @@
 <%- include('partials/head', { title: 'B̸̡͕̤̤̳̍̎͜͠e̶̹͍͓̿̌́̽̔̕c̵̡̖̠̦̻̪̀̈̈́̀͋õ̷͚̘̋̈m̵͖̩̟̕e̷̺̻͐͐̊̉ ̵͔̮̯̣̻̆͗̉̄À̶͖̚̚d̴̼͇̣̃̋̾̆m̷̳͖̅i̵̜̞̣̜̩͉̿͗̊̽͌n̷̩͑'}) %>
 <body>
   <%- include('partials/header') %>
-  <form method="POST" action="/user/activate-admin">
-    <label for="code">Enter secret code:</label>
-    <input type="text" name="code" id="code">
-    <p><%= locals.error %></p>
-    <button type="submit">Submit</button>
-  </form>
+  <main>
+    <div class="wrapper">
+      <h1 class="title-one">You should not be here</h1>
+      <p class="paragraph--centralized">
+        This place is only for <span class="accent">a̵̡̰͐͝d̶̠̍̈́͜m̵̫̫̈́̕i̵̪̳͊̇n̵̩̓̄s̴̛͎̜</span> and you should leave now.
+      </p>
+      <p class="paragraph--centralized">
+        ꖎ𝙹∷ᒷᒲ ╎!¡ᓭ⚍m ↸olor siℸ ̣ ᔑmet, ᓵoリsectetur adipiscin⊣ elit. ╎リℸ ̣ᒷ⊣e∷ ᓭeᒲ!¡er ᔑꖎiᑑ⚍am laᓵus ut p𝙹rttitor. ↸𝙹リᒷᓵ ꖎoʖo∷ℸ ̣╎ᓭ iᒲ!¡erdiet elei⎓end. ᒷℸ ̣╎ᔑᒲ iリ eᓭt ↸i⊣nissim, ⍊a∷i⚍s nuꖎla eget, auᓵt𝙹r liʖero. リᔑᒲ ᓭ╎ℸ ̣ amᒷt inte∷↸⚍m ꖎeᓵtus. ᒷℸ ̣╎ᔑᒲ a⚍⊣ue ꖎaᓵuᓭ, aliᑑuet se↸ ʖibeリdum et, inte∷dum sit amet ⍊elit. ᑑ⚍╎ᓭquᒷ i↸ リunᓵ id ᔑu⊣ue ᒲaꖎesuada mȧ/imus. !¡⍑ᔑᓭᒷꖎl⚍s ℸ ̣∷╎stiᑑue elit susᓵipit liʖer𝙹 ullaᒲcorper, リon elei⎓en↸ neque tincidunt. リ⚍ꖎlᔑ ⎓aᓵ╎liᓭi. ᒲᔑᒷᓵeリaᓭ ⍊e⍑╎c⚍ꖎa ᑑuis sa!¡ien siℸ ̣ amet scele∷isque. リᔑᒲ n𝙹n ℸ ̣o∷tor ᒷn╎m.985865568リᒷWꖎ╎NET𝙹ꖌEN98758659 
+        ╎リℸ ̣ᒷ⊣e∷ in ꖎ𝙹reᒲ ᔑᓵ n⚍lla ᓭagittis elementum at et ⋮usto. ↸𝙹リᒷᓵ ╎n ⚍ꖎℸ ̣∷icieᓭ ᒲetus. ᑑ⚍╎ᓭquᒷ ⍊eꖎ ᒲi 𝙹∷ᓵi. ⎓⚍ᓭᓵᒷ ℸ ̣eᒲ!¡𝙹∷ ᔑt urリa non puꖎ⍊╎nar. ⚍ℸ ̣ ⍊ᒷꖎ ᓭ𝙹ll╎ᓵitu↸iリ diᔑᒲ, sit amet sem!¡e∷ niʖ⍑. ᓭᒷ↸ ʖꖎᔑリd╎ℸ ̣, ᒲa⚍∷is ut m𝙹lestie malesuada, tellus nisi ᓵondimentum tortor, et consectetur neᑑue nunc in sa!¡ien. ᓭᒷ↸ !¡𝙹∷ℸ ̣t╎tor ʖꖎᔑリdit ante neᓵ ⊣ra⍊ida. 
+      </p>
+      <form class="form box flex--column" action="/user/activate-admin" method="post">
+        <div class="input-wrapper">
+          <label class="input-wrapper__label" for="code">Secret code:</label>
+          <input class="input-wrapper__input" type="text" name="code" id="code">
+          <p class="input-wrapper__error"><%= locals.error %></p>
+        </div>
+        <button class="button" type="submit">Submit</button>
+      </form>
+      <p class="paragraph--centralized small-text">
+        Yes, it's enchanting table language above...
+      </p>
+    </div>
+  </main>
   <%- include('partials/footer') %>
 </body>
 </html>

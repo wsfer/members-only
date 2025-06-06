@@ -189,6 +189,10 @@ body {
   text-align: center;
 }
 
+.small-text {
+  font-size: var(--text-xs);
+}
+
 .accent {
   color: var(--yellow-200);
 }

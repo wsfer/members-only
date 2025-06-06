@@ -3,12 +3,27 @@
 <%- include('partials/head', { title: 'Membership'}) %>
 <body>
   <%- include('partials/header') %>
-  <form method="POST" action="/user/membership">
-    <label for="code">Enter secret code:</label>
-    <input type="text" name="code" id="code">
-    <p><%= locals.error %></p>
-    <button type="submit">Submit</button>
-  </form>
+  <main>
+    <div class="wrapper">
+      <h1 class="title-one">Activate membership</h1>
+
+      <div class="box--transparent">
+        <p class="paragraph--centralized">
+          Welcome <span class="accent"><%= locals.user?.username %></span>. Enter your secret
+          code below to become a <span class="accent">member</span>
+        </p>
+      </div>
+
+      <form class="form box flex--column" action="/user/membership" method="post">
+        <div class="input-wrapper">
+          <label class="input-wrapper__label" for="code">Secret code:</label>
+          <input class="input-wrapper__input" type="text" name="code" id="code">
+          <p class="input-wrapper__error"><%= locals.error %></p>
+        </div>
+        <button class="button" type="submit">Submit</button>
+      </form>
+    </div>
+  </main>
   <%- include('partials/footer') %>
 </body>
 </html>
