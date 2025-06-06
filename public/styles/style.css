@@ -182,12 +182,45 @@ body {
   margin: 0;
 }
 
+.paragraph--centralized {
+  color: var(--neutral-200);
+  font-size: var(--text-sm);
+  margin: 0;
+  text-align: center;
+}
+
 .accent {
   color: var(--yellow-200);
 }
 
 .blur {
   filter: blur(0.2em);
+}
+
+.box {
+  background-color: var(--neutral-800);
+  padding: 1rem;
+}
+
+.box--transparent {
+  padding: 1rem;
+}
+
+.flex--row {
+  display: flex;
+  gap: 1rem;
+}
+
+.flex--column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form {
+  gap: 1.5rem;
+  margin: 1rem auto;
+  width: min(100%, 50ch);
 }
 
 /* Major components */
@@ -285,16 +318,6 @@ body {
   color: var(--error-light);
   font-size: var(--text-sm);
   margin: 0;
-}
-
-.form-box {
-  background-color: var(--neutral-800);
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  margin: 1rem auto;
-  padding: 1rem;
-  width: min(100%, 50ch);
 }
 
 /* Header */
