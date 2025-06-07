@@ -3,7 +3,7 @@
 <%- include('partials/head', { title: 'Posts'}) %>
 <body>
   <%- include('partials/header') %>
-  <main>
+  <main class="posts-page-content">
     <form class="search" action="/posts" method="get">
       <div class="wrapper">
         <div class="search__content">
@@ -50,30 +50,8 @@
           <% }) %>
         <% } %>
       </div>
-
-      <nav>
-        <h2>Pagination</h2>
-        <% if (result.search) { %>
-          <ul>
-            <li><a href="<%= `/posts?search=${result.search}` %>">1</a></li>
-            <% for (let index = 2; index <= result.pages; index++) { %>
-              <li>
-                <a href="<%= `/posts?page=${index}&search=${result.search}` %>"><%= index %></a>
-              </li>
-            <% } %>
-          </ul>
-        <% } else { %>
-          <ul>
-            <li><a href="<%= `/posts` %>">1</a></li>
-            <% for (let index = 2; index <= result.pages; index++) { %>
-              <li>
-                <a href="<%= `/posts?page=${index}` %>"><%= index %></a>
-              </li>
-            <% } %>
-          </ul>
-        <% } %>
-      </nav>
     </div>
+    <%- include('partials/pagination') %>
   </main>
   <%- include('partials/footer') %>
   <script src="/script.js"></script>
