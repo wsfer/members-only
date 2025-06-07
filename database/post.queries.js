@@ -41,7 +41,7 @@ async function getPosts({ page, search }) {
     posts: posts.rows,
     total: Number(resultCount.rows[0].count),
     limit: LIMIT_PER_PAGE,
-    pages: Math.ceil(Number(resultCount.rows[0].count) / LIMIT_PER_PAGE),
+    pages: Math.ceil(Number(resultCount.rows[0].count) / LIMIT_PER_PAGE) || 1,
     page,
     search,
   };
