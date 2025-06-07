@@ -249,7 +249,7 @@ body {
 }
 
 .posts {
-  margin: 0 auto;
+  margin: 0 auto 5rem;
   max-width: max(80%, 500px);
 }
 
