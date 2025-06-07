@@ -3,29 +3,38 @@
 <%- include('partials/head', { title: 'New Post'}) %>
 <body>
   <%- include('partials/header') %>
-  <form method="POST" action="/new-post">
-    <% if (locals.formErrors) { %>
-      <ul>
-        <% formErrors.forEach(error => { %>
-          <li><%= error.msg %></li>
-        <% }) %>
-      </ul>
-    <% } %>
+  <main>
+    <div class="wrapper">
+      <h1 class="title-one">Create a post</h1>
+      <form class="box form flex--column" action="/new-post" method="post">
+        <div class="input-wrapper">
+          <label class="input-wrapper__label" for="title">Title</label>
+          <input
+            class="input-wrapper__input"
+            type="text"
+            name="title"
+            id="title"
+            maxlength="100"
+            value=<%= locals.formValues?.title || '' %>
+          >
+          <p class="input-wrapper__error"><%= locals.formErrors?.title?.msg %></p>
+        </div>
 
-    <label for="title">Title</label>
-    <input
-      type="text"
-      name="title"
-      id="title"
-      maxlength="100"
-      value=<%= locals.formValues?.title || '' %>
-    >
+        <div class="input-wrapper">
+          <label class="input-wrapper__label" for="message">Message</label>
+          <textarea
+            class="input-wrapper__input"
+            name="message"
+            id="message"
+            maxlength="400"
+          ><%= locals.formValues?.message || '' %></textarea>
+          <p class="input-wrapper__error"><%= locals.formErrors?.message?.msg %></p>
+        </div>
 
-    <label for="message">Message</label>
-    <textarea name="message" id="message" maxlength="400"><%= locals.formValues?.message || '' %></textarea>
-
-    <button type="submit">Submit</button>
-  </form>
+        <button class="button" type="submit">Submit</button>
+      </form>
+    </div>
+  </main>
   <%- include('partials/footer') %>
 </body>
 </html>
