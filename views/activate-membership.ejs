@@ -7,12 +7,10 @@
     <div class="wrapper">
       <h1 class="title-one">Activate membership</h1>
 
-      <div class="box--transparent">
-        <p class="paragraph--centralized">
-          Welcome <span class="accent"><%= locals.user?.username %></span>. Enter your secret
-          code below to become a <span class="accent">member</span>
-        </p>
-      </div>
+      <p class="paragraph--centralized">
+        Welcome <span class="accent"><%= locals.user?.username %></span>. Enter your secret
+        code below to become a <span class="accent">member</span>
+      </p>
 
       <form class="form box flex--column" action="/user/membership" method="post">
         <div class="input-wrapper">

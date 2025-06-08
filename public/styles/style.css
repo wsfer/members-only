@@ -179,14 +179,17 @@ body {
 .paragraph {
   color: var(--neutral-200);
   font-size: var(--text-sm);
-  margin: 0;
 }
 
 .paragraph--centralized {
   color: var(--neutral-200);
   font-size: var(--text-sm);
-  margin: 0;
   text-align: center;
+}
+
+.no-spacing {
+  margin: 0;
+  padding: 0;
 }
 
 .small-text {
