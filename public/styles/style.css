@@ -165,7 +165,6 @@ body {
 .title-one {
   color: var(--neutral-100);
   font-size: var(--text-3xl);
-  margin: 0.5em 0;
   text-align: center;
 }
 
@@ -173,7 +172,6 @@ body {
   color: var(--neutral-100);
   font-size: var(--text-lg);
   font-weight: normal;
-  margin: 0;
 }
 
 .paragraph {
