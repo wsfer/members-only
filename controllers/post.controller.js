@@ -44,6 +44,14 @@ const createPost = [
 ];
 
 const deletePost = asyncHandler(async (req, res) => {
+  // Check if user is allowed to delete post
+  if (!req.user.is_admin) {
+    const postToDelete = await postQueries.getById(req.params.id);
+    if (req.user.id !== postToDelete.created_by) {
+      return res.status(401).end(); // Or throw some error and render an error page
+    }
+  }
+
   await postQueries.deletePost(req.params.id);
   await postMessage(req, `Post #${req.params.id} deleted`);
   res.redirect('/posts');

@@ -64,6 +64,21 @@ async function getLastPostsFromUser(id) {
   return rows;
 }
 
+async function getById(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT
+      post.id, post.title, post.message, post.created_at, post.created_by,
+      account.username, account.email, account.is_member, account.is_admin
+    FROM post JOIN account
+    ON post.created_by = account.id
+    WHERE post.id = $1
+  `,
+    [id]
+  );
+  return rows[0];
+}
+
 async function createPost({ title, message, userId }) {
   await pool.query(
     `INSERT INTO post (title, message, created_by) VALUES ($1, $2, $3)`,
@@ -79,6 +94,7 @@ module.exports = {
   getTrendyPosts,
   getPosts,
   getLastPostsFromUser,
+  getById,
   createPost,
   deletePost,
 };

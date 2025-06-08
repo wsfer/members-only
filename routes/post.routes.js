@@ -8,6 +8,6 @@ postRouter.get('/', postController.getIndexPage);
 postRouter.get('/new-post', auth.isLoggedIn, postController.getPostForm);
 postRouter.post('/new-post', auth.isLoggedIn, postController.createPost);
 postRouter.get('/posts', postController.getPosts);
-postRouter.post('/delete-post/:id', auth.isAdmin, postController.deletePost);
+postRouter.post('/delete-post/:id', auth.isLoggedIn, postController.deletePost);
 
 module.exports = postRouter;
