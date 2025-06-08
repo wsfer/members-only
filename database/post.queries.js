@@ -47,6 +47,23 @@ async function getPosts({ page, search }) {
   };
 }
 
+async function getLastPostsFromUser(id) {
+  const { rows } = await pool.query(
+    `
+    SELECT
+      post.id, post.title, post.message, post.created_at,
+      account.username, account.email, account.is_member, account.is_admin
+    FROM post JOIN account
+    ON post.created_by = account.id
+    WHERE account.id = $1
+    ORDER BY created_at DESC
+    LIMIT 5;  
+  `,
+    [id]
+  );
+  return rows;
+}
+
 async function createPost({ title, message, userId }) {
   await pool.query(
     `INSERT INTO post (title, message, created_by) VALUES ($1, $2, $3)`,
@@ -58,4 +75,10 @@ async function deletePost(id) {
   await pool.query('DELETE FROM post WHERE id = $1', [id]);
 }
 
-module.exports = { getTrendyPosts, getPosts, createPost, deletePost };
+module.exports = {
+  getTrendyPosts,
+  getPosts,
+  getLastPostsFromUser,
+  createPost,
+  deletePost,
+};
