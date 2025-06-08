@@ -526,3 +526,20 @@ body {
   flex: 1;
   grid-template-rows: auto 1fr auto;
 }
+
+.user-page-content {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 5rem;
+}
+
+.user-page-content__general {
+  flex: 1 1 400px;
+  padding-top: 0;
+}
+
+.user-page-content__posts {
+  border: 2px solid var(--neutral-800);
+  flex: 1 1 400px;
+  padding-top: 0;
+}

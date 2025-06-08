@@ -2,11 +2,13 @@ const { validationResult } = require('express-validator');
 const { postMessage } = require('../middlewares/message.middleware');
 const asyncHandler = require('express-async-handler');
 const userQueries = require('../database/user.queries');
+const postQueries = require('../database/post.queries');
 const validateRegister = require('../middlewares/validateRegister.middleware');
 const passport = require('../config/passport');
 
 const getUser = asyncHandler(async (req, res) => {
-  res.render('user');
+  const posts = await postQueries.getLastPostsFromUser(req.user.id);
+  res.render('user', { posts });
 });
 
 const getLoginForm = asyncHandler(async (req, res) => {

@@ -3,20 +3,54 @@
 <%- include('partials/head', { title: 'Account Settings'}) %>
 <body>
   <%- include('partials/header') %>
-  <p>Welcome <%= locals.user.username %></p>
-  <p>Account status: 
-    <% if (locals.user.is_admin) { %>
-      <span>Admin</span>
-    <% } else if (locals.user.is_member) { %>
-      <span>Member</span>
-    <% } else { %>
-      <span>Not member</span>
-    <% } %>
-  </p>
-  <% if (!locals.user.is_member) { %>
-    <a href="/user/membership">Become a member</a>
-  <% } %>
-  <form action="/user/logout" method="post"><button type="submit">Logout</button></form>
+  <main>
+    <div class="wrapper">
+      <% if (!user.is_member) { %>
+        <div class="message-box alert">
+          <a class="link--inline" href="/user/membership">Become a member</a>
+        </div>
+      <% } %>
+
+      <h1 class="title-one">Account settings</h1>
+
+      <div class="user-page-content">
+        <div class="box user-page-content__general">
+          <h2 class="title-two">General</h2>
+          <p class="paragraph">Id: <%= locals.user.id %></p>
+          <p class="paragraph">
+            Username: <span class="accent"><%= user.username %></span>
+          </p>
+          <p class="paragraph">Email: <%= locals.user.email %></p>
+          <p class="paragraph">Membership:
+            <% if (user.is_admin) { %>
+              <span class="accent">Admin</span>
+            <% } else if (user.is_member) { %>
+              <span class="accent">Member</span>
+            <% } else { %>
+              <span>Not member</span>
+            <% } %>
+          </p>
+          <p class="paragraph">#TODO: <span class="accent">ALLOW USER TO EDIT</span></p>
+        </div>
+
+        <div class="box--transparent user-page-content__posts">
+          <h2 class="title-two">Latest posts</h2>
+          <div>
+            <% if (posts.length === 0) { %>
+              <div class="box--transparent">
+                <p class="paragraph--centralized no-spacing">No posts found!</p>
+              </div>
+            <% } else { %>
+              <% posts.forEach((post) => { %>
+                <%- include('partials/post', { post }) %>
+              <% }) %>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
   <%- include('partials/footer') %>
+  <script src="/renderPosts.js"></script>
 </body>
 </html>
