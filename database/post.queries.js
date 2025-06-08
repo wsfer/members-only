@@ -5,7 +5,7 @@ const LIMIT_PER_PAGE = 10;
 async function getTrendyPosts() {
   const { rows } = await pool.query(`
     SELECT
-      post.id, post.title, post.message, post.created_at,
+      post.id, post.title, post.message, post.created_at, post.created_by,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
     ON post.created_by = account.id
@@ -21,7 +21,7 @@ async function getPosts({ page, search }) {
   const posts = await pool.query(
     `
     SELECT
-      post.id, post.title, post.message, post.created_at,
+      post.id, post.title, post.message, post.created_at, post.created_by,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
     ON post.created_by = account.id
@@ -51,7 +51,7 @@ async function getLastPostsFromUser(id) {
   const { rows } = await pool.query(
     `
     SELECT
-      post.id, post.title, post.message, post.created_at,
+      post.id, post.title, post.message, post.created_at, post.created_by,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
     ON post.created_by = account.id
