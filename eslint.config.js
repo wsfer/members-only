@@ -11,6 +11,6 @@ module.exports = defineConfig([
   },
   { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
   { files: ['**/*.{js,mjs,cjs}'], languageOptions: { globals: globals.node } },
-  globalIgnores(['public/*.js']),
+  globalIgnores(['public/scripts/*.js']),
   eslintConfigPrettier,
 ]);
