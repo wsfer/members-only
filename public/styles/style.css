@@ -543,3 +543,15 @@ body {
   flex: 1 1 400px;
   padding-top: 0;
 }
+
+.not-found-content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 3rem 0;
+}
+
+.not-found-content__gif {
+  max-width: 100%;
+  min-width: 50%;
+}
