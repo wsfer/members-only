@@ -1,10 +1,13 @@
 const { validationResult } = require('express-validator');
 const { postMessage } = require('../middlewares/message.middleware');
+const crypto = require('node:crypto');
 const asyncHandler = require('express-async-handler');
 const userQueries = require('../database/user.queries');
 const postQueries = require('../database/post.queries');
 const validateRegister = require('../middlewares/validateRegister.middleware');
 const passport = require('../config/passport');
+
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'not secret';
 
 const getUser = asyncHandler(async (req, res) => {
   const posts = await postQueries.getLastPostsFromUser(req.user.id);
@@ -41,7 +44,6 @@ const createUser = [
 
     if (!errors.isEmpty()) {
       const formErrors = errors.mapped();
-      console.log(formErrors);
       const formValues = req.body;
       return res.status(400).render('register', { formErrors, formValues });
     }
@@ -74,10 +76,11 @@ const getAdminForm = asyncHandler(async (req, res) => {
 });
 
 const activateAdmin = asyncHandler(async (req, res) => {
-  const HARDCODED_SECRET_TO_CHANGE_LATER = 'abc123';
-  const sentCode = req.body.code;
+  const currentCodeLength = ADMIN_PASSWORD.length;
+  const currentCode = Buffer.alloc(currentCodeLength, ADMIN_PASSWORD);
+  const sentCode = Buffer.alloc(currentCodeLength, req.body.code);
 
-  if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
+  if (crypto.timingSafeEqual(sentCode, currentCode)) {
     await userQueries.changeAdmin(true, req.user.id);
     await postMessage(req, 'Congratulations, you are an admin!', 'success');
     return res.redirect('/');
