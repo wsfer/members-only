@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const userController = require('../controllers/user.controller');
 const auth = require('../middlewares/auth.middleware');
+const NotFoundError = require('../errors/NotFoundError');
 
 const userRouter = Router();
 
@@ -33,5 +34,8 @@ userRouter.post(
   auth.isLoggedIn,
   userController.activateAdmin
 );
+userRouter.use(() => {
+  throw new NotFoundError('Content not found');
+});
 
 module.exports = userRouter;

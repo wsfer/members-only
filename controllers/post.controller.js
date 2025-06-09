@@ -3,6 +3,7 @@ const { postMessage } = require('../middlewares/message.middleware');
 const asyncHandler = require('express-async-handler');
 const postQueries = require('../database/post.queries');
 const validatePost = require('../middlewares/validatePost.middleware');
+const NotFoundError = require('../errors/NotFoundError');
 
 const getIndexPage = asyncHandler(async (req, res) => {
   const trendyPosts = await postQueries.getTrendyPosts();
@@ -19,7 +20,7 @@ const getPosts = asyncHandler(async (req, res) => {
 
   // Limit page number to be between 1 and 100
   if (!Number.isInteger(page) || page < 1 || page > 100) {
-    return res.status(404).end(); // TODO: throw an error or render 404 page
+    throw new NotFoundError('Content not found');
   }
 
   const result = await postQueries.getPosts({ page, search });
