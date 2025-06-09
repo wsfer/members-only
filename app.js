@@ -26,8 +26,12 @@ app.use('/', postRouter);
 
 /*eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }]*/
 app.use((err, req, res, _next) => {
-  console.error(err);
-  res.status(500).end();
+  if (err.statusCode === 404) {
+    res.status(404).render('not-found', { error: err });
+  } else {
+    console.error(err);
+    res.status(500).send('Unexpected server error');
+  }
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
