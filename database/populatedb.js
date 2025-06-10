@@ -11,7 +11,9 @@ const SQL = `
     email TEXT UNIQUE NOT NULL,
     password TEXT NOT NULL,
     is_member BOOLEAN DEFAULT FALSE,
-    is_admin BOOLEAN DEFAULT FALSE
+    is_admin BOOLEAN DEFAULT FALSE,
+    profile_emoji TEXT NOT NULL,
+    profile_color TEXT NOT NULL
   );
 
   CREATE TABLE IF NOT EXISTS post (
