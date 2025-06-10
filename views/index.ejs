@@ -22,9 +22,15 @@
       <h1 class="title-one">Recent posts</h1>
 
       <div class="posts">
-        <% posts.forEach((post) => { %>
-          <%- include('partials/post', { post }) %>
-        <% }) %>
+        <% if (posts.length === 0) { %>
+          <div class="box">
+            <p class="paragraph--centralized no-spacing">No results found!</p>
+          </div>
+        <% } else { %>
+          <% posts.forEach((post) => { %>
+            <%- include('partials/post', { post }) %>
+          <% }) %>
+        <% } %>
       </div>
     </div>
   </main>
