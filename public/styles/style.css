@@ -451,6 +451,19 @@ body {
   }
 }
 
+.emoji-picker {
+  --background: var(--neutral-800);
+  --border-color: var(--neutral-300);
+  --border-size: 2px;
+}
+
+@media screen and (max-width: 560px) {
+  .emoji-picker {
+    --num-columns: 6;
+    --category-emoji-size: 1.125rem;
+  }
+}
+
 /* Header */
 .header {
   background-color: var(--neutral-800);

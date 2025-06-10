@@ -60,11 +60,33 @@
           >
           <p class="input-wrapper__error"><%= locals.formErrors?.confirmPassword?.msg %></p>
         </div>
-        
+
+        <%# TODO: improve this %>
+        <p class="input-wrapper__label">Profile picture</p>
+        <div class="profile-builder">
+          <div class="profile-builder__emoji">
+            <emoji-picker class="js-emoji-picker emoji-picker dark"></emoji-picker>
+            <input class="js-emoji-input" type="hidden" name="profileEmoji" value="">
+          </div>
+
+          <div class="profile-builder__color">
+            <label class="visually-hidden" for="color">Profile color</label>
+            <input class="js-color-input" type="color" name="profileColor" id="color">
+          </div>
+
+          <div class="profile-builder__profile">
+            <div class="js-profile-color">
+              <span class="js-profile-emoji"></span>
+            </div>
+          </div>
+        </div>
+
         <button class="button" type="submit">Register</button>
       </form>
     </div>
   </main>
   <%- include('partials/footer') %>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+  <script src="/scripts/buildProfile.js"></script>
 </body>
 </html>
