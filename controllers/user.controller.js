@@ -10,7 +10,7 @@ const passport = require('../config/passport');
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'not secret';
 
 const getUser = asyncHandler(async (req, res) => {
-  const posts = await postQueries.getLastPostsFromUser(req.user.id);
+  const posts = await postQueries.getLastPostsFromUser(req.user.account_id);
   res.render('user', { posts });
 });
 
@@ -63,7 +63,7 @@ const activateMembership = asyncHandler(async (req, res) => {
   const sentCode = req.body.code;
 
   if (sentCode === HARDCODED_SECRET_TO_CHANGE_LATER) {
-    await userQueries.changeMembership(true, req.user.id);
+    await userQueries.changeMembership(true, req.user.account_id);
     await postMessage(req, 'Congratulations, you are a member!', 'success');
     return res.redirect('/');
   }
@@ -81,7 +81,7 @@ const activateAdmin = asyncHandler(async (req, res) => {
   const sentCode = Buffer.alloc(currentCodeLength, req.body.code);
 
   if (crypto.timingSafeEqual(sentCode, currentCode)) {
-    await userQueries.changeAdmin(true, req.user.id);
+    await userQueries.changeAdmin(true, req.user.account_id);
     await postMessage(req, 'Congratulations, you are an admin!', 'success');
     return res.redirect('/');
   }

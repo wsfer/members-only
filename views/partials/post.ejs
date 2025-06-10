@@ -22,8 +22,8 @@
       </p>
     <% } %>
 
-    <% if (locals.user && (user.is_admin || user.id === post.created_by)) { %>
-      <form class="post__controller" action="/delete-post/<%= post.id%>" method="post">
+    <% if (locals.user && (user.is_admin || user.account_id === post.created_by)) { %>
+      <form class="post__controller" action="/delete-post/<%= post.post_id%>" method="post">
         <button class="link--button" type="submit">Delete</button>
       </form>
     <% } %>

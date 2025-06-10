@@ -2,9 +2,10 @@ const pool = require('../config/pool');
 const bcrypt = require('bcryptjs');
 
 async function getById(id) {
-  const { rows } = await pool.query('SELECT * FROM account WHERE id = $1', [
-    id,
-  ]);
+  const { rows } = await pool.query(
+    'SELECT * FROM account WHERE account_id = $1',
+    [id]
+  );
   return rows[0];
 }
 
@@ -33,14 +34,14 @@ async function createUser({ username, email, password }) {
 }
 
 async function changeMembership(booleanValue, userId) {
-  await pool.query('UPDATE account SET is_member = $1 WHERE id = $2', [
+  await pool.query('UPDATE account SET is_member = $1 WHERE account_id = $2', [
     booleanValue,
     userId,
   ]);
 }
 
 async function changeAdmin(booleanValue, userId) {
-  await pool.query('UPDATE account SET is_admin = $1 WHERE id = $2', [
+  await pool.query('UPDATE account SET is_admin = $1 WHERE account_id = $2', [
     booleanValue,
     userId,
   ]);

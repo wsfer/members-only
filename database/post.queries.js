@@ -5,10 +5,10 @@ const LIMIT_PER_PAGE = 10;
 async function getTrendyPosts() {
   const { rows } = await pool.query(`
     SELECT
-      post.id, post.title, post.message, post.created_at, post.created_by,
+      post.post_id, post.title, post.message, post.created_at, post.created_by,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
-    ON post.created_by = account.id
+    ON post.created_by = account.account_id
     ORDER BY created_at DESC
     LIMIT 5;
   `);
@@ -21,10 +21,10 @@ async function getPosts({ page, search }) {
   const posts = await pool.query(
     `
     SELECT
-      post.id, post.title, post.message, post.created_at, post.created_by,
+      post.post_id, post.title, post.message, post.created_at, post.created_by,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
-    ON post.created_by = account.id
+    ON post.created_by = account.account_id
     WHERE post.title LIKE $1
     ORDER BY created_at DESC
     LIMIT ${LIMIT_PER_PAGE} OFFSET ${offset}
@@ -33,7 +33,7 @@ async function getPosts({ page, search }) {
   );
 
   const resultCount = await pool.query(
-    'SELECT COUNT(id) FROM post WHERE title LIKE $1',
+    'SELECT COUNT(post_id) FROM post WHERE title LIKE $1',
     [`%${search}%`]
   );
 
@@ -51,11 +51,11 @@ async function getLastPostsFromUser(id) {
   const { rows } = await pool.query(
     `
     SELECT
-      post.id, post.title, post.message, post.created_at, post.created_by,
+      post.post_id, post.title, post.message, post.created_at, post.created_by,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
-    ON post.created_by = account.id
-    WHERE account.id = $1
+    ON post.created_by = account.account_id
+    WHERE account.account_id = $1
     ORDER BY created_at DESC
     LIMIT 5;  
   `,
@@ -68,11 +68,11 @@ async function getById(id) {
   const { rows } = await pool.query(
     `
     SELECT
-      post.id, post.title, post.message, post.created_at, post.created_by,
+      post.post_id, post.title, post.message, post.created_at, post.created_by,
       account.username, account.email, account.is_member, account.is_admin
     FROM post JOIN account
-    ON post.created_by = account.id
-    WHERE post.id = $1
+    ON post.created_by = account.account_id
+    WHERE post.post_id = $1
   `,
     [id]
   );
@@ -87,7 +87,7 @@ async function createPost({ title, message, userId }) {
 }
 
 async function deletePost(id) {
-  await pool.query('DELETE FROM post WHERE id = $1', [id]);
+  await pool.query('DELETE FROM post WHERE post_id = $1', [id]);
 }
 
 module.exports = {
