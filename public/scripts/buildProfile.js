@@ -18,6 +18,7 @@
     profileColor.style.backgroundColor = e.target.value;
   });
 
-  profileEmoji.textContent = emojiHiddenInput.value || '😀';
+  emojiHiddenInput.value = emojiHiddenInput.value || '😀';
+  profileEmoji.textContent = emojiHiddenInput.value;
   profileColor.style.backgroundColor = colorInput.value;
 })();
