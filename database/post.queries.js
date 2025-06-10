@@ -4,10 +4,7 @@ const LIMIT_PER_PAGE = 10;
 
 async function getTrendyPosts() {
   const { rows } = await pool.query(`
-    SELECT
-      post.post_id, post.title, post.message, post.created_at, post.created_by,
-      account.username, account.email, account.is_member, account.is_admin
-    FROM post JOIN account
+    SELECT * FROM post JOIN account
     ON post.created_by = account.account_id
     ORDER BY created_at DESC
     LIMIT 5;
@@ -20,10 +17,7 @@ async function getPosts({ page, search }) {
 
   const posts = await pool.query(
     `
-    SELECT
-      post.post_id, post.title, post.message, post.created_at, post.created_by,
-      account.username, account.email, account.is_member, account.is_admin
-    FROM post JOIN account
+    SELECT * FROM post JOIN account
     ON post.created_by = account.account_id
     WHERE post.title LIKE $1
     ORDER BY created_at DESC
@@ -50,10 +44,7 @@ async function getPosts({ page, search }) {
 async function getLastPostsFromUser(id) {
   const { rows } = await pool.query(
     `
-    SELECT
-      post.post_id, post.title, post.message, post.created_at, post.created_by,
-      account.username, account.email, account.is_member, account.is_admin
-    FROM post JOIN account
+    SELECT * FROM post JOIN account
     ON post.created_by = account.account_id
     WHERE account.account_id = $1
     ORDER BY created_at DESC
@@ -67,10 +58,7 @@ async function getLastPostsFromUser(id) {
 async function getById(id) {
   const { rows } = await pool.query(
     `
-    SELECT
-      post.post_id, post.title, post.message, post.created_at, post.created_by,
-      account.username, account.email, account.is_member, account.is_admin
-    FROM post JOIN account
+    SELECT * FROM post JOIN account
     ON post.created_by = account.account_id
     WHERE post.post_id = $1
   `,
