@@ -49,7 +49,7 @@ const deletePost = asyncHandler(async (req, res) => {
   if (!req.user.is_admin) {
     const postToDelete = await postQueries.getById(req.params.id);
 
-    if (req.user.id !== postToDelete.created_by) {
+    if (req.user.account_id !== postToDelete.created_by) {
       await postMessage(req, 'Not allowed to delete this post', 'failure');
       return res.status(401).redirect('/posts');
     }
