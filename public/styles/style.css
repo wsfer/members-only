@@ -464,6 +464,26 @@ body {
   }
 }
 
+.profile {
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  width: var(--text-3xl);
+}
+
+.profile__emoji {
+  cursor: default;
+  display: block;
+  font-size: var(--text-normal);
+
+  &::selection,
+  &::-moz-selection {
+    color: none;
+  }
+}
+
 /* Header */
 .header {
   background-color: var(--neutral-800);
