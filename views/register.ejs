@@ -6,79 +6,87 @@
   <main>
     <div class="wrapper">
       <h1 class="title-one">Create account</h1>
-      <form class="form box flex--column" action="/user/register" method="post">
-        <div class="input-wrapper">
-          <label class="input-wrapper__label" for="username">Username</label>
-          <input
-            class="input-wrapper__input"
-            type="text"
-            name="username"
-            id="username"
-            minlength="8"
-            maxlength="20"
-            value=<%= locals.formValues?.username || '' %>
-          >
-          <p class="input-wrapper__error"><%= locals.formErrors?.username?.msg %></p>
-        </div>
+      <form class="register-form box" action="/user/register" method="post">
+        <div class="register-form__content">
+          <fieldset class="register-form__fieldset">
+            <legend class="register-form__legend">Account information</legend>
 
-        <div class="input-wrapper">
-          <label class="input-wrapper__label" for="email">Email</label>
-          <input
-            class="input-wrapper__input"
-            type="email"
-            name="email"
-            id="email"
-            value=<%= locals.formValues?.email || '' %>
-          >
-          <p class="input-wrapper__error"><%= locals.formErrors?.email?.msg %></p>
-        </div>
-
-        <div class="input-wrapper">
-          <label class="input-wrapper__label" for="password">Password</label>
-          <input
-            class="input-wrapper__input"
-            type="password"
-            name="password"
-            id="password"
-            minlength="8"
-            maxlength="20"
-            value=<%= locals.formValues?.password || '' %>
-          >
-          <p class="input-wrapper__error"><%= locals.formErrors?.password?.msg %></p>
-        </div>
-
-        <div class="input-wrapper">
-          <label class="input-wrapper__label" for="confirm-password">Confirm password</label>
-          <input
-            class="input-wrapper__input"
-            type="password"
-            name="confirmPassword"
-            id="confirm-password"
-            minlength="8"
-            maxlength="20"
-            value=<%= locals.formValues?.confirmPassword || '' %>
-          >
-          <p class="input-wrapper__error"><%= locals.formErrors?.confirmPassword?.msg %></p>
-        </div>
-
-        <%# TODO: improve this %>
-        <p class="input-wrapper__label">Profile picture</p>
-        <div class="profile-builder">
-          <div class="profile-builder__emoji">
-            <emoji-picker class="js-emoji-picker emoji-picker dark"></emoji-picker>
-            <input class="js-emoji-input" type="hidden" name="profileEmoji" value="">
-          </div>
-
-          <div class="profile-builder__color">
-            <label class="visually-hidden" for="color">Profile color</label>
-            <input class="js-color-input" type="color" name="profileColor" id="color">
-          </div>
-
-          <div class="profile-builder__profile">
-            <div class="js-profile-color">
-              <span class="js-profile-emoji"></span>
+            <div class="input-wrapper">
+              <label class="input-wrapper__label" for="username">Username</label>
+              <input
+                class="input-wrapper__input"
+                type="text"
+                name="username"
+                id="username"
+                minlength="8"
+                maxlength="20"
+                value=<%= locals.formValues?.username || '' %>
+              >
+              <p class="input-wrapper__error"><%= locals.formErrors?.username?.msg %></p>
             </div>
-          </div>
+
+            <div class="input-wrapper">
+              <label class="input-wrapper__label" for="email">Email</label>
+              <input
+                class="input-wrapper__input"
+                type="email"
+                name="email"
+                id="email"
+                value=<%= locals.formValues?.email || '' %>
+              >
+              <p class="input-wrapper__error"><%= locals.formErrors?.email?.msg %></p>
+            </div>
+
+            <div class="input-wrapper">
+              <label class="input-wrapper__label" for="password">Password</label>
+              <input
+                class="input-wrapper__input"
+                type="password"
+                name="password"
+                id="password"
+                minlength="8"
+                maxlength="20"
+                value=<%= locals.formValues?.password || '' %>
+              >
+              <p class="input-wrapper__error"><%= locals.formErrors?.password?.msg %></p>
+            </div>
+
+            <div class="input-wrapper">
+              <label class="input-wrapper__label" for="confirm-password">Confirm password</label>
+              <input
+                class="input-wrapper__input"
+                type="password"
+                name="confirmPassword"
+                id="confirm-password"
+                minlength="8"
+                maxlength="20"
+                value=<%= locals.formValues?.confirmPassword || '' %>
+              >
+              <p class="input-wrapper__error"><%= locals.formErrors?.confirmPassword?.msg %></p>
+            </div>
+          </fieldset>
+
+          <fieldset class="register-form__fieldset">
+            <legend class="register-form__legend">Profile picture</legend>
+            <div class="input-wrapper">
+              <label class="input-wrapper__label" aria-hidden="true">Emoji</label>
+              <emoji-picker class="js-emoji-picker emoji-picker dark"></emoji-picker>
+              <input class="js-emoji-input" type="hidden" name="profileEmoji" value="">
+              <p class="input-wrapper__error"><%= locals.formErrors?.profileEmoji?.msg %></p>
+            </div>
+
+            <div class="input-wrapper">
+              <label class="input-wrapper__label" for="color">Color</label>
+              <input class="js-color-input input-wrapper__input" type="color" name="profileColor" id="color">
+              <p class="input-wrapper__error"><%= locals.formErrors?.profileColor?.msg %></p>
+            </div>
+
+            <div role="img" aria-label="Profile preview">
+              <div class="js-profile-color profile">
+                <span class="js-profile-emoji profile__emoji"></span>
+              </div>
+            </div>
+          </fieldset>
         </div>
 
         <button class="button" type="submit">Register</button>

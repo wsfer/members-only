@@ -458,13 +458,16 @@ body {
 .emoji-picker {
   --background: var(--neutral-800);
   --border-color: var(--neutral-300);
-  --border-size: 2px;
+  --emoji-padding: 0.5rem;
+  --emoji-size: var(--text-normal);
+  height: 300px;
+  max-width: 100%;
+  width: min(100%, 320px);
 }
 
-@media screen and (max-width: 560px) {
+@media screen and (max-width: 420px) {
   .emoji-picker {
-    --num-columns: 6;
-    --category-emoji-size: 1.125rem;
+    --emoji-padding: 0.25rem;
   }
 }
 
@@ -591,4 +594,30 @@ body {
 .not-found-content__gif {
   max-width: 100%;
   min-width: 50%;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin: 1rem auto 5rem;
+  width: min(100%, 80ch);
+}
+
+.register-form__content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.register-form__fieldset {
+  border-color: var(--neutral-600);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.register-form__legend {
+  color: var(--neutral-200);
+  margin-bottom: 1rem;
 }
