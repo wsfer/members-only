@@ -266,6 +266,10 @@ body {
   padding: 0.5rem;
 }
 
+.post__profile {
+  margin: -0.25rem 0.5rem -0.25rem -0.25rem;
+}
+
 .post__username {
   color: var(--neutral-100);
   font-size: var(--text-normal);

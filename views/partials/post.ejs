@@ -3,6 +3,9 @@
   <div class="post__header">
     <%# Only display username and date if user is member/admin or creator of the post %>
     <% if (locals.user && (user.is_admin || user.is_member || user.username === post.username)) { %>
+      <div class="post__profile">
+        <%- include('profile', { ...post }) %>
+      </div>
       <p class="paragraph no-spacing">
         <span class="visually-hidden">Posted by</span>
         <span class="post__username"><%= post.username %></span>
@@ -14,7 +17,10 @@
         ><span aria-label="Loading date">🕒</span></time>
       </p>
     <% } else { %>
-      <p class="paragraph no-spacing blur">
+      <div class="post__profile blur">
+        <%- include('profile') %>
+      </div>
+      <p class="paragraph no-spacing blur"> 
         <span class="visually-hidden">Posted by</span>
         <span class="post__username">Annonymous</span>
         <span aria-hidden="true">•</span>
