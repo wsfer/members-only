@@ -38,5 +38,8 @@
   <div class="post__body">
     <h2 class="post__title title-two no-spacing"><%= post.title %></h2>
     <p class="post__message paragraph"><%= post.message %></p>
+    <a class="post__link" href="/posts/<%= post.post_id %>">
+      <span class="visually-hidden">See post</span>
+    </a>
   </div>
 </article>
