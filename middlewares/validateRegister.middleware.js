@@ -28,6 +28,12 @@ const validateRegister = [
   body('confirmPassword')
     .custom((value, { req }) => value === req.body.password)
     .withMessage('Confirm password field is different from password'),
+  body('profileEmoji')
+    .custom((value) => /^\p{Emoji}$/gu.test(value))
+    .withMessage('Must be a single emoji character'),
+  body('profileColor')
+    .custom((value) => /^#([0-9a-f]{6}|[0-9a-f]{3})$/i.test(value))
+    .withMessage('Color value is invalid'),
 ];
 
 module.exports = validateRegister;
