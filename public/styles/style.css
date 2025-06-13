@@ -291,6 +291,14 @@ body {
   margin-bottom: 0.5em;
 }
 
+.post__message {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  display: -webkit-box;
+  line-clamp: 4;
+  overflow: hidden;
+}
+
 .input-wrapper {
   display: flex;
   flex-direction: column;
