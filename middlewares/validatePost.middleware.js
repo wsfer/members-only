@@ -11,8 +11,8 @@ const validatePost = [
     .trim()
     .notEmpty()
     .withMessage('Message is required')
-    .isLength({ max: 400 })
-    .withMessage('Message is too long, should have maximum 400 characters'),
+    .isLength({ max: 2000 })
+    .withMessage('Message is too long, should have maximum 2000 characters'),
 ];
 
 module.exports = validatePost;
