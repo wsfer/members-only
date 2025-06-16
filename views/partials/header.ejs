@@ -4,33 +4,69 @@
       <a href="/" class="header__logo">
         <span class="logo__members">Members</span><span class="logo__only">Only</span>
       </a>
-      <% if (!locals.user) { %>
-        <%# Logged out user links %>
-        <nav class="header__nav">
-          <ul>
-            <li><a class="link--inline" href="/posts">Posts</a></li>
-            <li><a class="link--inline" href="/user/login">Login</a></li>
-            <li><a class="link--inline" href="/user/register">Register</a></li>
+
+      <nav class="header__nav js-header-nav">
+        <% if (locals.user && !locals.user.is_member) { %>
+          <a class="link--button" href="/user/membership">Membership</a>
+        <% }  %>
+        <%# toggle display header menu on mobile %>
+        <button class="button--icon js-menu-btn" aria-expanded="false" aria-controls="links">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <title>menu</title>
+            <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+          </svg>
+        </button>
+
+        <% if (!locals.user) { %>
+          <%# logged out users %>
+          <ul class="menu menu--hidden js-menu" id="links">
+            <li><a class="menu__link link--inline" href="/posts">Posts</a></li>
+            <li><a class="menu__link link--inline" href="/user/login">Login</a></li>
+            <li><a class="menu__link link--inline" href="/user/register">Register</a></li>
           </ul>
-        </nav>
-      <% } else { %>
-        <%# Logged in user links %>
-        <nav class="header__nav">
-          <ul>
-            <li><a class="link--inline" href="/posts">Posts</a></li>
-            <li><a class="link--inline" href="/new-post">Create</a></li>
-            <li><a class="link--inline" href="/user">Account</a></li>
+        <% } else { %>
+          <%# logged in users %>
+          <ul class="menu menu--hidden js-menu" id="links">
+            <li><a class="menu__link link--inline" href="/posts">Posts</a></li>
+            <li><a class="menu__link link--inline" href="/new-post">Create</a></li>
+            <li><a class="menu__link link--inline" href="/user">Account</a></li>
             <li>
               <form action="/user/logout" method="post">
-                <button class="link--inline" type="submit">Logout</button>
+                <button class="menu__link link--inline" type="submit">Logout</button>
               </form>
             </li>
-            <% if (!locals.user.is_member) { %>
-              <li><a class="link--button" href="/user/membership">Membership</a></li>
-            <% }  %>
           </ul>
-        </nav>
-      <% } %>
+        <% } %>
+      </nav>
     </div>
   </div>
+
+  <script>
+    (() => {
+      let isOpen = false;
+      const headerNav = document.querySelector('.js-header-nav');
+      const toggleMenuBtn = document.querySelector('.js-menu-btn');
+      const headerMenu = document.querySelector('.js-menu');
+
+      toggleMenuBtn.addEventListener('click', () => {
+        if (isOpen) {
+          isOpen = false;
+          toggleMenuBtn.setAttribute('aria-expanded', false);
+          headerMenu.classList.add('menu--hidden');
+        } else {
+          isOpen = true;
+          toggleMenuBtn.setAttribute('aria-expanded', true);
+          headerMenu.classList.remove('menu--hidden');
+        }
+      });
+
+      document.body.addEventListener('click', (e) => {
+        if (isOpen && !headerNav.contains(e.target)) {
+          isOpen = false;
+          toggleMenuBtn.setAttribute('aria-expanded', false);
+          headerMenu.classList.add('menu--hidden');
+        }
+      })
+    })();
+  </script>
 </header>
