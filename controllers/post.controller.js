@@ -27,6 +27,20 @@ const getPosts = asyncHandler(async (req, res) => {
   res.render('posts', { result });
 });
 
+const getPost = asyncHandler(async (req, res) => {
+  if (!Number.isInteger(Number(req.params.id))) {
+    throw new NotFoundError('Content not found');
+  }
+
+  const post = await postQueries.getById(req.params.id);
+
+  if (!post) {
+    throw new NotFoundError('Post not found');
+  }
+
+  res.render('post', { post });
+});
+
 const createPost = [
   validatePost,
   asyncHandler(async (req, res) => {
@@ -64,6 +78,7 @@ module.exports = {
   getIndexPage,
   getPostForm,
   getPosts,
+  getPost,
   createPost,
   deletePost,
 };
