@@ -526,6 +526,7 @@ body {
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   display: flex;
+  font-size: var(--text-normal);
   justify-content: center;
   width: var(--text-3xl);
 }
@@ -533,7 +534,6 @@ body {
 .profile__emoji {
   cursor: default;
   display: block;
-  font-size: var(--text-normal);
 
   &::selection,
   &::-moz-selection {
@@ -716,4 +716,42 @@ body {
 .register-form__legend {
   color: var(--neutral-200);
   margin-bottom: 1rem;
+}
+
+.post-page {
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 2rem 0;
+}
+
+.post-page__main {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.post-page__controls {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.post-page__profile .profile {
+  width: calc(var(--text-xl) * 2);
+  font-size: var(--text-xl);
+}
+
+@media (max-width: 500px) {
+  .post-page__main {
+    flex-direction: column;
+  }
+
+  .post-page__controls {
+    flex-direction: row;
+    justify-content: end;
+  }
+
+  .post-page__profile {
+    margin-right: auto;
+  }
 }

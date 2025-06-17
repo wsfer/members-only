@@ -5,12 +5,41 @@
 </head>
 <body>
   <%- include('partials/header') %>
-  <main>
-    <div class="wrapper">
-      <h1 class="title-one"><%= post.title %></h1>
-      <p class="paragraph"><%= post.message %></p>
+  <div class="wrapper">
+    <div class="post-page">
+      <main class="post-page__main">
+        <div class="post-page__controls">
+          <div class="post-page__profile">
+            <%- include('partials/profile', { ...post }) %>
+          </div>
+          <a class="link--icon" href="#comments">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <title>Comments</title>
+              <path d="M12,3C17.5,3 22,6.58 22,11C22,15.42 17.5,19 12,19C10.76,19 9.57,18.82 8.47,18.5C5.55,21 2,21 2,21C4.33,18.67 4.7,17.1 4.75,16.5C3.05,15.07 2,13.13 2,11C2,6.58 6.5,3 12,3Z" />
+            </svg>
+          </a>
+        </div>
+        <div>
+          <h1 class="title-two no-spacing"><%= post.title %></h1>
+          <p class="paragraph small-text">
+            <span class="visually-hidden">Posted by <%= post.username %></span>
+            <time
+              class="js-date"
+              data-timestamp="<%= post.created_at %>"
+              datetime="<%= new Date(post.created_at).toISOString() %>"
+            >
+              <span aria-label="Loading date">🕒</span>
+            </time>
+          </p>
+          <p class="paragraph"><%= post.message %></p>
+        </div>
+      </main>
+      <section class="post-page__comments" id="comments">
+        <p class="paragraph"><span class="accent">TODO</span> add comments</p>
+      </section>
     </div>
-  </main>
+  </div>
   <%- include('partials/footer') %>
+  <script src="/scripts/renderDates.js"></script>
 </body>
 </html>
