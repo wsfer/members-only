@@ -4,6 +4,7 @@ const passport = require('./config/passport');
 const session = require('./middlewares/session.middleware');
 const userRouter = require('./routes/user.routes');
 const postRouter = require('./routes/post.routes');
+const commentRouter = require('./routes/comment.router');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,6 +23,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/user', userRouter);
+app.use('/comment', commentRouter);
 app.use('/', postRouter);
 
 /*eslint no-unused-vars: ["error", { "argsIgnorePattern": "^_" }]*/
