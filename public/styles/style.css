@@ -741,6 +741,10 @@ body {
   font-size: var(--text-xl);
 }
 
+.post-page__comment-form > button {
+  width: fit-content;
+}
+
 @media (max-width: 500px) {
   .post-page__main {
     flex-direction: column;

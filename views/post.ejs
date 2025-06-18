@@ -35,8 +35,18 @@
         </div>
       </main>
       <section class="post-page__comments" id="comments">
+        <h2 class="title-two">Recent comments</h2>
         <p class="paragraph"><span class="accent">TODO</span> add comments</p>
       </section>
+      <% if (locals.user) { %>
+        <form class="post-page__comment-form box flex--column" action="/comment" method="post">
+          <div class="input-wrapper">
+            <label class="input-wrapper__label" for="comment">Leave a comment</label>
+            <textarea class="input-wrapper__input" name="comment" id="comment"></textarea>
+          </div>
+          <button class="button" type="submit">Submit</button>
+        </form>
+      <% } %>
     </div>
   </div>
   <%- include('partials/footer') %>
