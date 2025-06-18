@@ -8,9 +8,34 @@
   <div class="wrapper">
     <div class="post-page">
       <main class="post-page__main">
+        <div class="post-page__post-header">
+          <h1 class="title-two no-spacing"><%= post.title %></h1>
+          <% if (locals.user && (user.is_admin || user.is_member || user.username === post.username)) { %>
+            <p class="paragraph small-text">
+              <span class="visually-hidden">Posted by <%= post.username %></span>
+              <time
+                class="js-date"
+                data-timestamp="<%= post.created_at %>"
+                datetime="<%= new Date(post.created_at).toISOString() %>"
+              >
+                <span aria-label="Loading date">🕒</span>
+              </time>
+            </p>
+          <% } else { %>
+            <p class="paragraph small-text blur">
+              <span class="visually-hidden">Posted by Annonymous</span>
+              <span class="post__date">hidden date</span>
+            </p>
+          <% } %>
+        </div>
+
         <div class="post-page__controls">
           <div class="post-page__profile">
-            <%- include('partials/profile', { ...post }) %>
+            <% if (locals.user && (user.is_admin || user.is_member || user.username === post.username)) { %>
+              <%- include('partials/profile', { ...post }) %>
+            <% } else { %>
+              <%- include('partials/profile') %>
+            <% } %>
           </div>
           <a class="link--icon" href="#comments">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -19,25 +44,14 @@
             </svg>
           </a>
         </div>
-        <div>
-          <h1 class="title-two no-spacing"><%= post.title %></h1>
-          <p class="paragraph small-text">
-            <span class="visually-hidden">Posted by <%= post.username %></span>
-            <time
-              class="js-date"
-              data-timestamp="<%= post.created_at %>"
-              datetime="<%= new Date(post.created_at).toISOString() %>"
-            >
-              <span aria-label="Loading date">🕒</span>
-            </time>
-          </p>
-          <p class="paragraph"><%= post.message %></p>
-        </div>
+
+        <p class="post-page__message paragraph"><%= post.message %></p>
       </main>
       <section class="post-page__comments" id="comments">
         <h2 class="title-two">Recent comments</h2>
         <p class="paragraph"><span class="accent">TODO</span> add comments</p>
       </section>
+
       <% if (locals.user) { %>
         <form class="post-page__comment-form box flex--column" action="/comment" method="post">
           <div class="input-wrapper">
@@ -47,6 +61,7 @@
           <button class="button" type="submit">Submit</button>
         </form>
       <% } %>
+
     </div>
   </div>
   <%- include('partials/footer') %>
