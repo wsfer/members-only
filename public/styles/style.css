@@ -769,6 +769,10 @@ body {
   }
 }
 
+.post-page__comments {
+  margin-bottom: 1.75rem;
+}
+
 .post-page__comment-form > button {
   width: fit-content;
 }

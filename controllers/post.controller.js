@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 const { postMessage } = require('../middlewares/message.middleware');
 const asyncHandler = require('express-async-handler');
 const postQueries = require('../database/post.queries');
+const commentQueries = require('../database/comment.queries');
 const validatePost = require('../middlewares/validatePost.middleware');
 const NotFoundError = require('../errors/NotFoundError');
 
@@ -38,7 +39,9 @@ const getPost = asyncHandler(async (req, res) => {
     throw new NotFoundError('Post not found');
   }
 
-  res.render('post', { post });
+  const comments = await commentQueries.getByPost(req.params.id);
+
+  res.render('post', { post, comments });
 });
 
 const createPost = [

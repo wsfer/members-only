@@ -25,7 +25,10 @@ const createComment = [
     if (!errors.isEmpty()) {
       const formErrors = errors.mapped();
       const formValues = req.body;
-      return res.status(400).render('post', { post, formErrors, formValues });
+      const comments = await commentQueries.getByPost(req.params.id);
+      return res
+        .status(400)
+        .render('post', { post, comments, formErrors, formValues });
     }
 
     await commentQueries.createComment({

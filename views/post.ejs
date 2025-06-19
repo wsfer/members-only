@@ -54,7 +54,16 @@
       </main>
       <section class="post-page__comments" id="comments">
         <h2 class="title-two">Recent comments</h2>
-        <p class="paragraph"><span class="accent">TODO</span> add comments</p>
+
+        <% if (comments.length > 0) { %>
+          <% comments.forEach((comment) => { %>
+            <%- include('partials/comment', { comment }) %>
+          <% }) %>
+        <% } else { %>
+          <div class="box">
+            <p class="paragraph--centralized">No comments found</p>
+          </div>
+        <% } %>
       </section>
 
       <% if (locals.user) { %>
