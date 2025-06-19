@@ -1,0 +1,32 @@
+<article class="comment">
+  <div class="comment__header">
+    <% if (locals.user && (user.is_admin || user.is_member || user.username === post.username)) { %>
+      <div class="comment__profile">
+        <%- include('profile', { ...comment }) %>
+      </div>
+      <p class="paragraph no-spacing">
+        <span class="visually-hidden">Posted by</span>
+        <span class="accent"><%= comment.username %></span>
+        <span aria-hidden="true">•</span>
+        <time
+          class="js-date comment__date"
+          data-timestamp="<%= comment.created_at %>"
+          datetime="<%= new Date(comment.created_at).toISOString() %>"
+        ><span aria-label="Loading date">🕒</span></time>
+      </p>
+    <% } else { %>
+      <div class="comment__profile blur">
+        <%- include('profile') %>
+      </div>
+      <p class="paragraph no-spacing blur"> 
+        <span class="visually-hidden">Posted by</span>
+        <span class="accent">Annonymous</span>
+        <span aria-hidden="true">•</span>
+        <span class="comment__date">hidden date</span>
+      </p>
+    <% } %>
+  </div>
+  <div class="comment__body">
+    <p class="paragraph"><%= comment.message %></p>
+  </div>
+</article>

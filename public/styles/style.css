@@ -541,6 +541,26 @@ body {
   }
 }
 
+.comment {
+  background-color: var(--neutral-800);
+  margin-bottom: 0.75rem;
+}
+
+.comment__header {
+  align-items: center;
+  background-color: var(--neutral-700);
+  display: flex;
+  padding: 0.5rem;
+}
+
+.comment__profile {
+  margin: -0.25rem 0.5rem -0.25rem -0.25rem;
+}
+
+.comment__body {
+  padding: 0.5rem;
+}
+
 /* Header */
 .header {
   background-color: var(--neutral-800);
