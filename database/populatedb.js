@@ -23,6 +23,13 @@ const SQL = `
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     created_by INTEGER REFERENCES account(account_id) ON DELETE CASCADE
   );
+
+  CREATE TABLE IF NOT EXISTS comment (
+    post_id INTEGER NOT NULL REFERENCES post(post_id) ON DELETE CASCADE,
+    account_id INTEGER NOT NULL REFERENCES account(account_id) ON DELETE CASCADE,
+    message TEXT NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+  );
 `;
 
 async function main() {
